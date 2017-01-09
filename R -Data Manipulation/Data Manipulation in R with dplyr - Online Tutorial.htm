@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)https://www.datacamp.com/courses/dplyr-data-manipulation-r-tutorial -->
+<html class="wf-karminasans-i3-active wf-karminasans-i4-active wf-karminasans-i7-active wf-karminasans-n3-active wf-karminasans-n4-active wf-karminasans-n7-active wf-active"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- SEO -->
+    
+<title>Data Manipulation in R with dplyr - Online Tutorial</title>
+<meta name="description" content="Learn how to manipulate data in R with the easy &amp; intuitive Dplyr syntax through our leading course taught by RStudio. Learn at your own pace with DataCamp!">
+<meta name="keywords" content="dplyr, dplyr tutorial, data manipulation with r, data manipulation with r pdf, r data manipulation, data manipulation in r, data manipulation tools, r data manipulation tutorial, r manipulate data, data manipulation examples, data manipulate, data">
+<link rel="author" href="https://plus.google.com/u/0/+Datacamp/">
+<meta property="og:image" content="https://www.datacamp.com/datacamp.png">
+<meta property="og:title" content="Data Manipulation in R with dplyr - Online Tutorial">
+<meta name="twitter:title" content="Data Manipulation in R with dplyr - Online Tutorial">
+<meta name="twitter:description" content="Learn how to manipulate data in R with the easy &amp; intuitive Dplyr syntax through our leading course taught by RStudio. Learn at your own pace with DataCamp!">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@DataCamp">
+<meta name="twitter:image:src" content="https://www.datacamp.com/datacamp.png">
+<meta name="twitter:creator" content="@DataCamp">
+<meta name="twitter:domain" content="www.datacamp.com">
+
+		<!-- Typekit -->
+		<script src="https://js-agent.newrelic.com/nr-943.min.js"></script><script type="text/javascript" async="" src="https://cdn.segment.com/analytics.js/v1/vaFcOplBJk5aNDXhTnXUaH4XcZSVOL1m/analytics.min.js"></script><script src="./Data Manipulation in R with dplyr - Online Tutorial_files/pjc4zfc.js"></script>
+		<style type="text/css">.tk-karmina-sans{font-family:"karmina-sans",sans-serif;}</style><link rel="stylesheet" href="./Data Manipulation in R with dplyr - Online Tutorial_files/l" media="all"><script>try{Typekit.load({ async: false });}catch(e){}</script>
+
+		<!-- Main CSS -->
+		<link rel="stylesheet" media="all" href="./Data Manipulation in R with dplyr - Online Tutorial_files/application-7704474931747876b7927a0823e85d62.css">
+		<link rel="shortcut icon" type="image/x-icon" href="https://cdn.datacamp.com/main-app/assets/favicon-5b50d893ea0894bf9de48997dcc2e11b.ico">
+		<meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="N3sfzZL/UJ9ZCDBk+VYDR7fQbi3t2ReoE8jhpj38xy5kDc/qnOaUf50Ao5fkyveZlUF2fWcNNjKNBspHaVbH3Q==">
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"4795905ee2","applicationID":"7334808","transactionName":"JlkNEEQLVA0DE0wFDBBEEAFFS0sJCRY=","queueTime":0,"applicationTime":173,"agent":""}</script>
+<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(e,t){return function(){o(e,[(new Date).getTime()].concat(a(arguments)),null,t)}}var o=e("handle"),i=e(2),a=e(3);"undefined"==typeof window.newrelic&&(newrelic=NREUM);var u=["setPageViewName","setCustomAttribute","finished","addToTrace","inlineHit"],c=["addPageAction"],f="api-";i(u,function(e,t){newrelic[t]=r(f+t,"api")}),i(c,function(e,t){newrelic[t]=r(f+t)}),t.exports=newrelic,newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),o("err",[e,(new Date).getTime()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(0>o?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?u(e,a,i):i()}function n(n,r,o){e&&e(n,r,o);for(var i=t(o),a=l(n),u=a.length,c=0;u>c;c++)a[c].apply(i,r);var s=f[g[n]];return s&&s.push([m,n,r,i]),i}function p(e,t){w[e]=l(e).concat(t)}function l(e){return w[e]||[]}function d(e){return s[e]=s[e]||o(n)}function v(e,t){c(e,function(e,n){t=t||"feature",g[n]=t,t in f||(f[t]=[])})}var w={},g={},m={on:p,emit:n,get:d,listeners:l,context:t,buffer:v};return m}function i(){return new r}var a="nr@context",u=e("gos"),c=e(2),f={},s={},p=t.exports=o();p.backlog=f},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!w++){var e=v.info=NREUM.info,t=s.getElementsByTagName("script")[0];if(e&&e.licenseKey&&e.applicationID&&t){c(l,function(t,n){e[t]||(e[t]=n)});var n="https"===p.split(":")[0]||e.sslForHttp;v.proto=n?"https://":"http://",u("mark",["onload",a()],null,"api");var r=s.createElement("script");r.src=v.proto+e.agent,t.parentNode.insertBefore(r,t)}}}function o(){"complete"===s.readyState&&i()}function i(){u("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var u=e("handle"),c=e(2),f=window,s=f.document;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:f.XMLHttpRequest,REQ:f.Request,EV:f.Event,PR:f.Promise,MO:f.MutationObserver},e(1);var p=""+location,l={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-943.min.js"},d=window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent),v=t.exports={offset:a(),origin:p,features:{},xhrWrappable:d};s.addEventListener?(s.addEventListener("DOMContentLoaded",i,!1),f.addEventListener("load",r,!1)):(s.attachEvent("onreadystatechange",o),f.attachEvent("onload",r)),u("mark",["firstbyte",a()],null,"api");var w=0},{}]},{},["loader"]);</script>
+		<!--<base href="/">--><base href=".">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="fragment" content="!">
+
+    <link rel="stylesheet" href="./Data Manipulation in R with dplyr - Online Tutorial_files/font-awesome.min.css">
+
+		<!-- Google site verification for webmaster tools -->
+		<meta name="google-site-verification" content="ao3s4PdjisD2QsfTbldo7YJx7VX2QLkPEtlDpyFTjo8">
+    <!-- <meta name="google-site-verification" content="eIXyTuB-EggMhj3B0bS4DBmMtPkUHXSpNAyolCX1lKE" /> -->
+
+		<!-- Tracking for segment IO -->
+		<script type="text/javascript">
+		  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+        analytics.load('vaFcOplBJk5aNDXhTnXUaH4XcZSVOL1m');
+		  	// Identify user at the client side
+
+			analytics.page();
+		  }}();
+		</script>
+
+    <!-- DataCamp Analytics -->
+    <script src="./Data Manipulation in R with dplyr - Online Tutorial_files/datacamp-analytics-1.1.0.min.js"></script>
+    <script type="text/javascript">
+      window.DC = window.DC || {}
+      window.DC.analytics = new DCAnalytics({"api_domain": "https://www.datacamp.com", "collection": "main", "autotrack_utm": true, "autotrack_data_attr": true });
+    </script>
+	</head>
+
+	<body>
+		<ul class="offscreen-nav">
+  <li class="top offscreen-nav-li"></li>
+  <li class="offscreen-nav-li"><a href="https://www.datacamp.com/">Home</a></li>
+  <li class="offscreen-nav-li"><a href="https://www.datacamp.com/courses">Courses</a></li>
+    <li class="offscreen-nav-li"><a href="https://www.datacamp.com/pricing">Pricing</a></li>
+  <li class="offscreen-nav-li"><a href="https://www.datacamp.com/groups">Groups</a></li>
+    <li class="offscreen-nav-li bb0"><a href="https://www.datacamp.com/community">Community</a></li>
+    <li class="offscreen-nav-li accent"><a href="https://www.datacamp.com/users/sign_up">Create free account</a></li>
+    <li class="offscreen-nav-li"><a href="https://www.datacamp.com/users/sign_in">Sign in</a></li>
+</ul>
+
+		<div class="site-wrap">
+			<div id="flash_messages">
+</div>
+
+			<!-- Include the template -->
+			
+<section class="bg bg-navigation">
+  <div class="container">
+    <nav class="clearfix">
+  <div class="navbar--title">
+    <a class="clearfix no-link-style" data-dc-track="" data-dc-referrer="main" href="https://www.datacamp.com/">
+      <div class="logo"></div>
+      <div class="logo-title">DataCamp</div>
+</a>    <a class="small-link" href="https://www.datacamp.com/careers">We're hiring!</a>
+  </div>
+
+
+  <ul class="nav hidden-xs hidden-sm">
+      <li><a class="btn btn-secondary-light" data-dc-track="" data-dc-referrer="main" href="https://www.datacamp.com/users/sign_in">Sign in</a></li>
+      <li>or</li>
+      <li><a data-dc-track="" data-dc-referrer="main" href="https://www.datacamp.com/users/sign_up">Create free account</a></li>
+      <li class="spacer"></li>
+    <li><a data-dc-track="" data-dc-referrer="main" href="https://www.datacamp.com/community">Community</a></li>
+    <li><a data-dc-track="" data-dc-referrer="main" href="https://www.datacamp.com/groups/business">Groups</a></li>
+      <li><a data-dc-track="" data-dc-referrer="main" href="https://www.datacamp.com/pricing">Pricing</a></li>
+    <li><a data-dc-track="" data-dc-referrer="main" href="https://www.datacamp.com/courses">Courses</a></li>
+    <li><a class="hidden-md" data-dc-track="" data-dc-referrer="main" href="https://www.datacamp.com/">Home</a></li>
+  </ul>
+  <div class="nav--resp-menu-toggle hidden-lg hidden-md">
+    <a class="no-link-style" href="https://www.datacamp.com/"><i class="fa fa-bars fa-2x"></i></a>
+  </div>
+</nav>
+
+
+    <div class="show-course-header">
+      <div class="row">
+        <div class="col-sm-12 col-md-8 col-lg-9">
+          <h5 class="subhead">premium course</h5>
+          <h1>Data Manipulation in R with dplyr</h1>
+          <a class="btn btn-primary btn-large" rel="nofollow" href="https://www.datacamp.com/users/sign_up?redirect=https%3A%2F%2Fcampus.datacamp.com%2Fcourses%2Fdplyr-data-manipulation-r-tutorial">Start Course For Free</a>
+          <hr>
+          <ul>
+            <li class="icon-video">11&nbsp;Videos</li>
+            <li class="icon-code">42&nbsp;Exercises</li>
+            <li class="icon-time">4 hours&nbsp;</li>
+            <li class="icon-participants">24,526&nbsp;Participants</li>
+            <li class="icon-xp">3400&nbsp;XP</li>
+          </ul>
+        </div>
+
+        <div class="hidden-xs hidden-sm col-md-4 col-lg-3">
+          <div class="header-image">
+            <div class="progress" data-value="0" data-size="1000" data-thickness="20" data-fill="{&quot;color&quot;: &quot;#ebf4f7&quot;}" data-line-cap="round" data-empty-fill="rgba(213,234,239,0.1)"><canvas width="1000" height="1000"></canvas></div>
+            <img alt="Data Manipulation in R with dplyr" src="./Data Manipulation in R with dplyr - Online Tutorial_files/dplyr_r.png">		
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="show-course">
+  <div class="container">
+    <div class="row">
+
+      <!-- Sidebar -->
+      <div class="col-sm-3 col-sm-push-9 text-center">
+        <img alt="Garrett Grolemund" width="100" height="100" class="center-block image-rounded" src="./Data Manipulation in R with dplyr - Online Tutorial_files/garret.png">
+        <p class="text-tertiary">Taught by:</p>
+        <h5>Garrett Grolemund</h5>
+        <p>Garrett is the author of <i>Hands on Programming with R</i>, as well as <i>Data Science with R</i>, an upcoming book from O'Reilly Media. He is a Data Scientist at RStudio and holds a Ph.D. in Statistics, but specializes in teaching. He's taught people how to use R at over 50 government agencies, small businesses, and multi-billion dollar global companies; and he's designed RStudio's training materials for R, Shiny, dplyr and more.<br><br>Garrett is Editor-in-chief of the Shiny development center (<a class="white-link" href="http://shiny.rstudio.com/" target="_blank">shiny.rstudio.com</a>) and a frequent contributor to the RStudio blog. He wrote the popular lubridate package for R.<br><br>This course will also feature a surprise appearance by another RStudio team member.</p>
+      </div>
+      <!-- !Sidebar -->
+
+      <!-- Main content -->
+      <div class="col-sm-9 col-sm-pull-3 vertical-nav-border">
+        <h3>Course Description</h3>
+        <p>In this interactive tutorial, you will learn how to perform sophisticated dplyr techniques to carry out your data manipulation with R. First you will master the five verbs of R data manipulation with dplyr: select, mutate, filter, arrange and summarise. Next, you will learn how you can chain your dplyr operations using the pipe operator of the magrittr package. In the final section, the focus is on practicing how to subset your data using the group_by function, and how you can access data stored outside of R in a database. All said and done, you will be familiar with data manipulation tools and techniques that will allow you to efficiently manipulate data.</p>
+
+        <div class="chapter">
+
+          <!-- Header of the chapter -->
+          <div class="chapter-header">
+            <h4><span class="chapter-number">1</span>Introduction to dplyr and tbls&nbsp;<span class="label label-accent">Free</span></h4>
+            <p>Introduction to the dplyr package and the tbl class. Learn the philosophy that guides dplyr, discover some useful applications of the dplyr package, and meet the data structures that dplyr uses behind the scenes.</p>
+          </div>
+          <!-- !Header of the chapter -->
+
+          <!-- Body of the chapter -->
+          <div class="chapter-body ">
+            <ul>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-one-introduction-to-dplyr-and-tbls?ex=1">
+                    <span class="exercise-icon "><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_video-bd7d7b3ad6e7cbfa0ba3b0f0cb0d63a9.svg" alt="Icon exercise video"></span>Section 1 - Introduction to dplyr <span class="xp">50 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-one-introduction-to-dplyr-and-tbls?ex=2">
+                    <span class="exercise-icon "><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Load the dplyr and hflights package <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-one-introduction-to-dplyr-and-tbls?ex=3">
+                    <span class="exercise-icon "><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_mc-65dfa67dc1e00e00968dc7d412a0f5ac.svg" alt="Icon exercise mc"></span>Explore the data set <span class="xp">50 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-one-introduction-to-dplyr-and-tbls?ex=4">
+                    <span class="exercise-icon "><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_video-bd7d7b3ad6e7cbfa0ba3b0f0cb0d63a9.svg" alt="Icon exercise video"></span>Section 2 - tbl, a special type of data.frame <span class="xp">50 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-one-introduction-to-dplyr-and-tbls?ex=5">
+                    <span class="exercise-icon "><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Convert data.frame to table <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-one-introduction-to-dplyr-and-tbls?ex=6">
+                    <span class="exercise-icon "><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Changing labels of hflights, part 1 of 2 <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-one-introduction-to-dplyr-and-tbls?ex=7">
+                    <span class="exercise-icon "><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Changing labels of hflights, part 2 of 2 <span class="xp">100 xp</span>
+</a>                </li>
+            </ul>
+          </div>
+          <!-- !Body of the chapter -->
+
+          <!-- Footer of the chapter -->
+          <div class="chapter-footer">
+            <a href="https://www.datacamp.com/" data-toggle-details="" chevron-direction="up">Hide Chapter Details</a>
+            <a class="chapter-text-link" href="https://www.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-one-introduction-to-dplyr-and-tbls-r">View text version</a>
+            <a class="btn btn-primary m0" rel="nofollow" href="https://www.datacamp.com/users/sign_up?redirect=https%3A%2F%2Fcampus.datacamp.com%2Fcourses%2Fdplyr-data-manipulation-r-tutorial%2Fchapter-one-introduction-to-dplyr-and-tbls%3Fex%3D1">Play Chapter Now</a>
+          </div>
+          <!-- !Footer of the chapter -->
+
+        </div>	
+        <div class="chapter">
+
+          <!-- Header of the chapter -->
+          <div class="chapter-header">
+            <h4><span class="chapter-number locked"><i class="fa fa-lock"></i></span>Select and mutate&nbsp;</h4>
+            <p>Get familiar with dplyr's manipulation verbs. Meet the five verbs and then practice using the mutate and select verbs.</p>
+          </div>
+          <!-- !Header of the chapter -->
+
+          <!-- Body of the chapter -->
+          <div class="chapter-body">
+            <ul>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-two-select-and-mutate?ex=1">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_video-bd7d7b3ad6e7cbfa0ba3b0f0cb0d63a9.svg" alt="Icon exercise video"></span>Section 3 - The five verbs and select in more detail <span class="xp">50 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-two-select-and-mutate?ex=2">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_mc-65dfa67dc1e00e00968dc7d412a0f5ac.svg" alt="Icon exercise mc"></span>The five verbs and their meaning <span class="xp">50 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-two-select-and-mutate?ex=3">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Choosing is not losing! The select verb <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-two-select-and-mutate?ex=4">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Helper functions for variable selection <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-two-select-and-mutate?ex=5">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Comparison to basic R <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-two-select-and-mutate?ex=6">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_video-bd7d7b3ad6e7cbfa0ba3b0f0cb0d63a9.svg" alt="Icon exercise video"></span>Section 4 - The second of five verbs: mutate <span class="xp">50 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-two-select-and-mutate?ex=7">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Mutating is creating <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-two-select-and-mutate?ex=8">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Add multiple variables using mutate <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-two-select-and-mutate?ex=9">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_mc-65dfa67dc1e00e00968dc7d412a0f5ac.svg" alt="Icon exercise mc"></span>Recap on mutate and select <span class="xp">50 xp</span>
+</a>                </li>
+            </ul>
+          </div>
+          <!-- !Body of the chapter -->
+
+          <!-- Footer of the chapter -->
+          <div class="chapter-footer">
+            <a href="https://www.datacamp.com/" data-toggle-details="" chevron-direction="up">Hide Chapter Details</a>
+            
+            <a class="btn btn-primary m0" rel="nofollow" href="https://www.datacamp.com/users/sign_up?redirect=https%3A%2F%2Fcampus.datacamp.com%2Fcourses%2Fdplyr-data-manipulation-r-tutorial%2Fchapter-two-select-and-mutate%3Fex%3D1">Play Chapter Now</a>
+          </div>
+          <!-- !Footer of the chapter -->
+
+        </div>	
+        <div class="chapter">
+
+          <!-- Header of the chapter -->
+          <div class="chapter-header">
+            <h4><span class="chapter-number locked"><i class="fa fa-lock"></i></span>Filter and arrange&nbsp;</h4>
+            <p>Learn how to search through the observations in your data set (and extract useful observations) with the filter function. Rearrange the observations in your data set with the arrange verb.</p>
+          </div>
+          <!-- !Header of the chapter -->
+
+          <!-- Body of the chapter -->
+          <div class="chapter-body hidden">
+            <ul>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-three-filter-and-arrange?ex=1">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_video-bd7d7b3ad6e7cbfa0ba3b0f0cb0d63a9.svg" alt="Icon exercise video"></span>Section 5 - The third of five verbs: filter <span class="xp">50 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-three-filter-and-arrange?ex=2">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Logical operators <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-three-filter-and-arrange?ex=3">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Combining tests using boolean operators <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-three-filter-and-arrange?ex=4">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Blend together what you've learned! <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-three-filter-and-arrange?ex=5">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_mc-65dfa67dc1e00e00968dc7d412a0f5ac.svg" alt="Icon exercise mc"></span>Recap on select, mutate and filter <span class="xp">50 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-three-filter-and-arrange?ex=6">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_video-bd7d7b3ad6e7cbfa0ba3b0f0cb0d63a9.svg" alt="Icon exercise video"></span>Section 6 - Almost there: the arrange verb <span class="xp">50 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-three-filter-and-arrange?ex=7">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Arranging your data <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-three-filter-and-arrange?ex=8">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Reverse the order of arranging <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-three-filter-and-arrange?ex=9">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_mc-65dfa67dc1e00e00968dc7d412a0f5ac.svg" alt="Icon exercise mc"></span>Recap on select, mutate, filter and arrange <span class="xp">50 xp</span>
+</a>                </li>
+            </ul>
+          </div>
+          <!-- !Body of the chapter -->
+
+          <!-- Footer of the chapter -->
+          <div class="chapter-footer">
+            <a href="https://www.datacamp.com/" data-toggle-details="" chevron-direction="down">View Chapter Details</a>
+            
+            <a class="btn btn-primary m0" rel="nofollow" href="https://www.datacamp.com/users/sign_up?redirect=https%3A%2F%2Fcampus.datacamp.com%2Fcourses%2Fdplyr-data-manipulation-r-tutorial%2Fchapter-three-filter-and-arrange%3Fex%3D1">Play Chapter Now</a>
+          </div>
+          <!-- !Footer of the chapter -->
+
+        </div>	
+        <div class="chapter">
+
+          <!-- Header of the chapter -->
+          <div class="chapter-header">
+            <h4><span class="chapter-number locked"><i class="fa fa-lock"></i></span>Summarise and the pipe operator&nbsp;</h4>
+            <p>Master the data manipulation verb summarise, and practice combining the five verbs to solve advanced data manipulation tasks. Learn to chain the operators together with the piping operator.</p>
+          </div>
+          <!-- !Header of the chapter -->
+
+          <!-- Body of the chapter -->
+          <div class="chapter-body hidden">
+            <ul>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-four-summarise-and-the-pipe-operator?ex=1">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_video-bd7d7b3ad6e7cbfa0ba3b0f0cb0d63a9.svg" alt="Icon exercise video"></span>Section 7 - Last but not least: summarise <span class="xp">50 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-four-summarise-and-the-pipe-operator?ex=2">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>The syntax of summarise <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-four-summarise-and-the-pipe-operator?ex=3">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Aggregate functions <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-four-summarise-and-the-pipe-operator?ex=4">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>dplyr aggregate functions <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-four-summarise-and-the-pipe-operator?ex=5">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_video-bd7d7b3ad6e7cbfa0ba3b0f0cb0d63a9.svg" alt="Icon exercise video"></span>Section 8 - Chaining your functions: the pipe operator <span class="xp">50 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-four-summarise-and-the-pipe-operator?ex=6">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Overview of syntax <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-four-summarise-and-the-pipe-operator?ex=7">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Drive or fly? Part 1 of 2 <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-four-summarise-and-the-pipe-operator?ex=8">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Drive or fly? Part 2 of 2 <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-four-summarise-and-the-pipe-operator?ex=9">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Advanced piping exercise <span class="xp">100 xp</span>
+</a>                </li>
+            </ul>
+          </div>
+          <!-- !Body of the chapter -->
+
+          <!-- Footer of the chapter -->
+          <div class="chapter-footer">
+            <a href="https://www.datacamp.com/" data-toggle-details="" chevron-direction="down">View Chapter Details</a>
+            
+            <a class="btn btn-primary m0" rel="nofollow" href="https://www.datacamp.com/users/sign_up?redirect=https%3A%2F%2Fcampus.datacamp.com%2Fcourses%2Fdplyr-data-manipulation-r-tutorial%2Fchapter-four-summarise-and-the-pipe-operator%3Fex%3D1">Play Chapter Now</a>
+          </div>
+          <!-- !Footer of the chapter -->
+
+        </div>	
+        <div class="chapter">
+
+          <!-- Header of the chapter -->
+          <div class="chapter-header">
+            <h4><span class="chapter-number locked"><i class="fa fa-lock"></i></span>Group_by and working with databases&nbsp;</h4>
+            <p>Complete your mastery of data manipulation with group-wise operations and databases. Learn to use group_by to group your data into subsets of observations, and use dplyr to access data stored outside of R in a database.</p>
+          </div>
+          <!-- !Header of the chapter -->
+
+          <!-- Body of the chapter -->
+          <div class="chapter-body hidden">
+            <ul>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-five-group_by-and-working-with-databases?ex=1">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_video-bd7d7b3ad6e7cbfa0ba3b0f0cb0d63a9.svg" alt="Icon exercise video"></span>Section 9 - Get group-wise insights: group_by <span class="xp">50 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-five-group_by-and-working-with-databases?ex=2">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Unite and conquer using group_by <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-five-group_by-and-working-with-databases?ex=3">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Combine group_by with mutate <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-five-group_by-and-working-with-databases?ex=4">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>Advanced group_by exercises <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-five-group_by-and-working-with-databases?ex=5">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_video-bd7d7b3ad6e7cbfa0ba3b0f0cb0d63a9.svg" alt="Icon exercise video"></span>Section 10 - dplyr and databases <span class="xp">50 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-five-group_by-and-working-with-databases?ex=6">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>dplyr deals with different types <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-five-group_by-and-working-with-databases?ex=7">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_interactive-b80daa30b7191d98ec525061e6859075.svg" alt="Icon exercise interactive"></span>dplyr and mySQL databases <span class="xp">100 xp</span>
+</a>                </li>
+                <li class="exercise ">
+                  <a rel="nofollow" href="https://campus.datacamp.com/courses/dplyr-data-manipulation-r-tutorial/chapter-five-group_by-and-working-with-databases?ex=8">
+                    <span class="exercise-icon locked"><img width="25" height="25" src="./Data Manipulation in R with dplyr - Online Tutorial_files/icon_exercise_video-bd7d7b3ad6e7cbfa0ba3b0f0cb0d63a9.svg" alt="Icon exercise video"></span>Talk with Hadley Wickham <span class="xp">50 xp</span>
+</a>                </li>
+            </ul>
+          </div>
+          <!-- !Body of the chapter -->
+
+          <!-- Footer of the chapter -->
+          <div class="chapter-footer">
+            <a href="https://www.datacamp.com/" data-toggle-details="" chevron-direction="down">View Chapter Details</a>
+            
+            <a class="btn btn-primary m0" rel="nofollow" href="https://www.datacamp.com/users/sign_up?redirect=https%3A%2F%2Fcampus.datacamp.com%2Fcourses%2Fdplyr-data-manipulation-r-tutorial%2Fchapter-five-group_by-and-working-with-databases%3Fex%3D1">Play Chapter Now</a>
+          </div>
+          <!-- !Footer of the chapter -->
+
+        </div>	
+
+        <a class="btn btn-primary start-course-button" rel="nofollow" href="https://www.datacamp.com/users/sign_up?redirect=https%3A%2F%2Fcampus.datacamp.com%2Fcourses%2Fdplyr-data-manipulation-r-tutorial">Start Course For Free</a>
+      </div>
+      <!-- !Main Content -->
+
+    </div>
+  </div>
+</section>
+
+<section class="bg bg-navigation show-course-quotes">
+  <div class="container text-center">
+    <div class="row">
+
+      <!-- Quote 1 -->
+      <section class="col-md-4">
+	<div class="quote card-circle-top quote--white"> 
+		<img class="card-circle-top-image" width="120" height="120" src="./Data Manipulation in R with dplyr - Online Tutorial_files/image04-fbee0f28e11a9a18f448405116cfb70a.jpg" alt="Image04">
+		<div class="quote__text" style="height:130px">
+			<p>“Thank you for an incredible product. There is no better way to learn R and I never thought I could fall in love with doing this.”</p>
+		</div>
+		<div class="quote__person" style="height: 115px">
+			<p><strong>Bjørn Lammerzah</strong>, trader at a leading energy asset management enterprise</p>
+		</div>
+</div></section>
+
+
+      <!-- Quote 2 -->
+      <section class="col-md-4">
+	<div class="quote card-circle-top quote--white"> 
+		<img class="card-circle-top-image" width="120" height="120" src="./Data Manipulation in R with dplyr - Online Tutorial_files/image06-56d1af88f7585e38384249701ae772fd.jpg" alt="Image06">
+		<div class="quote__text" style="height:130px">
+			<p>“Thanks for this amazing platform! I highly enjoy learning through doing.”</p>
+		</div>
+		<div class="quote__person" style="height: 115px">
+			<p><strong>Avner Florenthal</strong>, head of Business Intelligence at Supersonic</p>
+		</div>
+</div></section>
+
+
+      <!-- Quote 3 -->
+      <section class="col-md-4">
+	<div class="quote card-circle-top quote--white"> 
+		<img class="card-circle-top-image" width="120" height="120" src="./Data Manipulation in R with dplyr - Online Tutorial_files/image12-9d19fe237a83617d4fc2971de963af7e.jpg" alt="Image12">
+		<div class="quote__text" style="height:130px">
+			<p>“I LOVE your program! I have been spreading the word about your program and have gotten several other graduate students excited.”</p>
+		</div>
+		<div class="quote__person" style="height: 115px">
+			<p><strong>John Swenson</strong>, researcher and teaching assistant at San Francisco State University</p>
+		</div>
+</div></section>
+
+
+    </div>
+    <br>
+    <p class="mt0 text-secondary"><a href="https://www.datacamp.com/stories">Read More Stories</a></p>
+  </div>
+</section>
+
+
+<section class="footer">
+	<div class="container">
+		<hr>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="row">
+					<div class="col-sm-6">
+						<ul class="no-style">
+								<li class="header"><a href="https://www.datacamp.com/users/sign_up">Create free account</a></li>
+								<li class="header"><a href="https://www.datacamp.com/users/sign_in">Sign-in</a></li>
+							<li><a href="https://www.datacamp.com/courses">View All Courses</a></li>
+							<li><a href="https://www.datacamp.com/groups">DataCamp for Groups</a></li>
+							<li><a href="https://www.datacamp.com/community">Community</a></li>
+							<li><a href="https://www.datacamp.com/teach">Become a Teacher</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-6 contact-information hidden-xs">
+						<h5>Contact Us</h5>
+						<div class="row">
+							<div class="col-xs-3 icon">
+								<i class="fa fa-envelope-o"></i>
+							</div>
+							<div class="col-xs-9 info">
+								<a href="mailto:support@datacamp.com">support@datacamp.com</a>
+							</div>
+						</div>
+						<div class="row location">
+							<div class="col-xs-3 icon">
+								<i class="fa fa-map-marker"></i>
+							</div>
+							<div class="col-xs-9 info">
+								<p>USA</p>
+								<span>2067 Massachusetts Ave, Floor 5<br>Cambridge, MA 02140</span>
+							</div>
+						</div>
+						<div class="row location">
+							<div class="col-xs-3 icon">
+								<i class="fa fa-map-marker"></i>
+							</div>
+							<div class="col-xs-9 info">
+								<p>Belgium</p>
+								<span>Kapeldreef 60<br>3001 Leuven, Belgium</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 hidden-sm hidden-xs">
+				<h5>Give us feedback</h5>
+				<form class="ajax-form" action="https://www.datacamp.com/api/users/submit_feedback" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓">
+					<fieldset>
+						<textarea name="message" id="message" placeholder="Request a feature, suggest a course or topic, etc." cols="30" rows="3"></textarea>
+					</fieldset>
+					<fieldset>
+						<button name="button" type="submit" class="btn btn-secondary">Submit</button>
+						<p class="ajax-success">Thanks! Your feedback has been saved!</p>
+						<p class="ajax-fail">Oops.. Looks like something went wrong.</p>
+					</fieldset>
+</form>			</div>
+		</div>
+	</div>
+</section>
+<div class="bottom-navigation">
+	<div class="container clearfix">
+		<div class="navbar--title">
+			<a class="clearfix no-link-style" href="https://www.datacamp.com/">
+				<div class="logo"></div>
+				<div class="logo-title">DataCamp</div>
+</a>			<a class="small-link" href="https://www.datacamp.com/careers">We're hiring!</a>
+		</div>
+		<ul class="inline clearfix hidden-xs">
+			<li><a target="_blank" href="http://www.r-fiddle.org/">R Fiddle</a></li>
+			<li><a target="_blank" href="http://www.rdocumentation.org/">RDocumentation</a></li>
+			<li><a href="https://www.datacamp.com/about">About</a></li>
+		</ul>
+		<div class="social-icons clearfix">
+			<a target="_blank" href="https://twitter.com/datacamp"><i class="fa fa-twitter"></i></a>
+			<a target="_blank" href="https://www.facebook.com/pages/DataCamp/726282547396228"><i class="fa fa-facebook"></i></a>
+			<a target="_blank" href="https://www.linkedin.com/company/datamind-org"><i class="fa fa-linkedin"></i></a>
+			<a target="_blank" href="https://www.youtube.com/channel/UC79Gv3mYp6zKiSwYemEik9A"><i class="fa fa-youtube"></i></a>
+		</div>
+	</div>
+</div>
+
+
+<!-- Tracking code for the course page -->
+<!-- Track only when course is paid, the user is not signed in or the user is signed in and the user has no access to the coure -->
+<script type="text/javascript">
+analytics.track('Visit Premium Course Page', { nonInteraction: 1 })
+analytics.track('Visit Premium Course Page - 625', { nonInteraction: 1 })
+DC.analytics.track_event('Visit Premium Course Page', "visit", { nonInteraction: 1 })
+DC.analytics.track_event('Visit Premium Course Page - 625', "visit", { nonInteraction: 1 })
+</script>
+
+
+		</div>
+		<!-- The required Braintree lib -->
+		<script src="./Data Manipulation in R with dplyr - Online Tutorial_files/braintree.js"></script>
+		<script src="./Data Manipulation in R with dplyr - Online Tutorial_files/braintree-data.js"></script>
+    <!-- DataCamp Main JS -->
+    <script src="./Data Manipulation in R with dplyr - Online Tutorial_files/application-8d78c9ac83039bec2a858eb3dc410ad3.js"></script>
+
+		
+    <script type="text/javascript" src="./Data Manipulation in R with dplyr - Online Tutorial_files/saved_resource"></script>
+    <script type="text/javascript">
+      // This identifies your website in the createToken call below
+      Stripe.setPublishableKey('pk_live_4bvFOkHgRQgjsTiRzCWM0yLk');
+    </script>
+    
+<script src="https://static.tapfiliate.com/tapfiliate.js" type="text/javascript" async=""></script>
+<script type="text/javascript">
+  window['TapfiliateObject'] = i = 'tap';
+  window[i] = window[i] || function () {
+      (window[i].q = window[i].q || []).push(arguments);
+  };
+
+  tap('create', '1802-65ce86');
+  tap('detectClick', function() {
+		Cookies.set("tap_vid", tap.vid, { expires: 36500 });
+	});
+</script>
+
+	
+
+<iframe name="stripeXDM_default197664_provider" id="stripeXDM_default197664_provider" src="./Data Manipulation in R with dplyr - Online Tutorial_files/channel.html" frameborder="0" style="position: absolute; top: -2000px; left: 0px;"></iframe></body></html>

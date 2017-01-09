@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<!-- saved from url=(0080)http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/ -->
+<html class=" js csstransforms3d"><head lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ 
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link href="http://www.google-analytics.com/" rel="dns-prefetch">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link rel="pingback" href="http://www.analyticsvidhya.com/xmlrpc.php">
+<link rel="icon" id="favicon" type="image/png" href="https://www.analyticsvidhya.com/wp-content/uploads/2015/02/logo_square_v2.jpg"><link rel="apple-touch-icon" href="https://www.analyticsvidhya.com/wp-content/uploads/2015/02/logo_square_v2.jpg"><link rel="apple-touch-icon" sizes="76x76" href="https://www.analyticsvidhya.com/wp-content/uploads/2015/02/logo_square_v2.jpg"><link rel="apple-touch-icon" sizes="114x114" href="https://www.analyticsvidhya.com/wp-content/uploads/2015/02/logo_square_v2.jpg"><link rel="apple-touch-icon" sizes="144x144" href="https://www.analyticsvidhya.com/wp-content/uploads/2015/02/logo_square_v2.jpg">
+<title>Do Faster Data Manipulation using These 7 R Packages</title>
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+<link rel="stylesheet" href="./Do Faster Data Manipulation using These 7 R Packages_files/popup-style7.css">
+<div class="fit-vids-style" id="fit-vids-style" style="display: none;">­<style>.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></div><script async="" src="http://www.google-analytics.com/analytics.js"></script><script async="" src="http://www.google-analytics.com/analytics.js"></script><script type="text/javascript">
+					var bhittani_plugin_kksr_js = {"nonce":"d698e8a7dd","grs":false,"ajaxurl":"http:\/\/www.analyticsvidhya.com\/wp-admin\/admin-ajax.php","func":"kksr_ajax","msg":"Rate this post","fuelspeed":400,"thankyou":"Thank you for your vote","error_msg":"An error occurred","tooltip":"1","tooltips":[{"tip":"","color":"#ffffff"},{"tip":"","color":"#ffffff"},{"tip":"","color":"#ffffff"},{"tip":"","color":"#ffffff"},{"tip":"","color":"#ffffff"}]};
+				</script>
+ 
+<meta name="description" content="A tutorial on faster Data Manipulation in R using these 7 packages which are dplyr, data.table, readr, lubridate,ggplot2,tidyr with examples">
+<meta name="keywords" content="r for data analysis,data analysis and interpretation,data analytics tools,data mining application,tools for data mining">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Do Faster Data Manipulation using These 7 R Packages">
+<meta property="og:description" content="A tutorial on faster Data Manipulation in R using these 7 packages which are dplyr, data.table, readr, lubridate,ggplot2,tidyr with examples">
+<meta property="og:url" content="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/">
+<meta property="og:image" content="http://www.analyticsvidhya.com/wp-content/uploads/2015/12/datar.jpg">
+<meta property="article:published_time" content="2015-12-11">
+<meta property="article:modified_time" content="2016-02-16">
+<meta property="article:author" content="http://www.analyticsvidhya.com/blog/author/manish-saraswat/">
+<meta property="article:tag" content="Business Analytics">
+<meta property="article:tag" content="R">
+<meta property="article:tag" content="data exploration">
+<meta property="article:tag" content="data manipulation">
+<meta property="article:tag" content="data.table">
+<meta property="article:tag" content="dplyr">
+<meta property="article:tag" content="ggplot">
+<meta property="article:tag" content="lubridate">
+<meta property="article:tag" content="r packages">
+<meta property="article:tag" content="reshape">
+<meta property="article:tag" content="reshape2">
+<meta property="article:tag" content="tidyr">
+<meta property="og:site_name" content="Analytics Vidhya">
+<meta name="twitter:card" content="summary">
+ 
+<link rel="alternate" type="application/rss+xml" title="Analytics Vidhya » Feed" href="http://www.analyticsvidhya.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Analytics Vidhya » Comments Feed" href="http://www.analyticsvidhya.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Analytics Vidhya » Do Faster Data Manipulation using These 7 R Packages Comments Feed" href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/feed/">
+<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/www.analyticsvidhya.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.5.2"}};
+			!function(a,b,c){function d(a){var c,d,e,f=b.createElement("canvas"),g=f.getContext&&f.getContext("2d"),h=String.fromCharCode;if(!g||!g.fillText)return!1;switch(g.textBaseline="top",g.font="600 32px Arial",a){case"flag":return g.fillText(h(55356,56806,55356,56826),0,0),f.toDataURL().length>3e3;case"diversity":return g.fillText(h(55356,57221),0,0),c=g.getImageData(16,16,1,1).data,d=c[0]+","+c[1]+","+c[2]+","+c[3],g.fillText(h(55356,57221,55356,57343),0,0),c=g.getImageData(16,16,1,1).data,e=c[0]+","+c[1]+","+c[2]+","+c[3],d!==e;case"simple":return g.fillText(h(55357,56835),0,0),0!==g.getImageData(16,16,1,1).data[0];case"unicode8":return g.fillText(h(55356,57135),0,0),0!==g.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./Do Faster Data Manipulation using These 7 R Packages_files/wp-emoji-release.min.js" type="text/javascript"></script>
+<style type="text/css">img.wp-smiley,img.emoji{display:inline!important;border:none!important;box-shadow:none!important;height:1em!important;width:1em!important;margin:0 .07em!important;vertical-align:-0.1em!important;background:none!important;padding:0!important;}</style>
+<link rel="stylesheet" id="contact-form-7-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/styles.css" type="text/css" media="all">
+<link rel="stylesheet" id="cntctfrm_form_style-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/form_style.css" type="text/css" media="all">
+<link rel="stylesheet" id="dgd-scrollbox-plugin-core-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="bhittani_plugin_kksr-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/css.css" type="text/css" media="all">
+<link rel="stylesheet" id="social-widget-css" href="http://www.analyticsvidhya.com/wp-content/plugins/social-media-widget/social_widget.css?ver=4.5.2" type="text/css" media="all">
+<link rel="stylesheet" id="wsl-widget-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/style(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="maha-bootstrap-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/bootstrap-responsive.css" type="text/css" media="all">
+<link rel="stylesheet" id="maha-entypo-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/entypo.css" type="text/css" media="all">
+<link rel="stylesheet" id="maha-basix-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/basix.css" type="text/css" media="all">
+<link rel="stylesheet" id="maha-basix-r-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/basix-responsive.css" type="text/css" media="all">
+<link rel="stylesheet" id="maha_heading_font-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="maha_main_font-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="maha_content_font-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/css(1)" type="text/css" media="all">
+<link rel="stylesheet" id="stbCoreCSS-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/stb-core.css" type="text/css" media="all">
+<link rel="stylesheet" id="stbCSS-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/wp-special-textboxes.css.php" type="text/css" media="all">
+<link rel="stylesheet" id="genericons-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/genericons.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack_css-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/jetpack.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpss-style-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/wpss-pkg.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpss-custom-db-style-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/saved_resource" type="text/css" media="all">
+<link rel="stylesheet" id="simplr-forms-style-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/default.css" type="text/css" media="all">
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/jquery.js"></script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/jquery-migrate.min.js" defer="defer"></script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/q2w3-fixed-widget.min.js" defer="defer"></script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/related-posts.js" defer="defer"></script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/cntctfrm.js" defer="defer"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var $DGD = {"ajaxurl":"http:\/\/www.analyticsvidhya.com\/wp-admin\/admin-ajax.php","nonce":"f4411f7a0a","debug":"","permalink":"http:\/\/www.analyticsvidhya.com\/blog\/2015\/12\/faster-data-manipulation-7-packages\/","title":"Do Faster Data Manipulation using These 7 R Packages","thumbnail":"http:\/\/i0.wp.com\/www.analyticsvidhya.com\/wp-content\/uploads\/2015\/12\/datar.jpg?fit=500%2C300","scripthost":"http:\/\/www.analyticsvidhya.com\/wp-content\/plugins\/dreamgrow-scroll-triggered-box\/","scrollboxes":[{"trigger":{"action":"scroll","scroll":"30","delaytime":"0","element":""},"vpos":"center","hpos":"center","cookieLifetime":"7","hide_mobile":"1","receiver_email":"0","thankyou":"","submit_auto_close":"0.1","hide_submitted":"1","delay_auto_close":"60","theme":"","widget_enabled":"1","height":"350","width":"600","jsCss":{"padding":"10","margin":"10","backgroundColor":"#ffffff","boxShadow":"1px","borderColor":"#000000","borderWidth":"2px","borderRadius":"1px","backgroundImageUrl":""},"closeImageUrl":"https:\/\/www.analyticsvidhya.com\/wp-content\/uploads\/2015\/06\/cross.png","transition":{"from":"b","effect":"none","speed":"400"},"social":{"facebook":"","twitter":"","google":"","pinterest":"","stumbleupon":"","linkedin":""},"id":"dgd_scrollbox-16979","mode":"stb","voff":0,"hoff":0}]};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/script.js" defer="defer"></script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/js.min.js" defer="defer"></script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/wpss-pkg.min.js" defer="defer"></script>
+<link rel="https://api.w.org/" href="http://www.analyticsvidhya.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.analyticsvidhya.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.analyticsvidhya.com/wp-includes/wlwmanifest.xml">
+<link rel="prev" title="10 Ultimate Tips and Tricks on Data Visualization in QlikView" href="http://www.analyticsvidhya.com/blog/2015/12/10-tips-tricks-data-visualization-qlikview/">
+<link rel="next" title="Enterprise BI Architect – Bangalore / Gurgaon (15+ years of experience)" href="http://www.analyticsvidhya.com/blog/2015/12/enterprise-bi-architect-bangalore-gurgaon-15-years-experience/">
+<meta name="generator" content="WordPress 4.5.2">
+<link rel="shortlink" href="http://wp.me/p3Zl4g-5FW">
+<link rel="alternate" type="application/json+oembed" href="http://www.analyticsvidhya.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.analyticsvidhya.com%2Fblog%2F2015%2F12%2Ffaster-data-manipulation-7-packages%2F">
+<link rel="alternate" type="text/xml+oembed" href="http://www.analyticsvidhya.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.analyticsvidhya.com%2Fblog%2F2015%2F12%2Ffaster-data-manipulation-7-packages%2F&amp;format=xml">
+<style>.kk-star-ratings{width:120px;}.kk-star-ratings .kksr-stars a{width:24px;}.kk-star-ratings .kksr-stars,.kk-star-ratings .kksr-stars .kksr-fuel,.kk-star-ratings .kksr-stars a{height:24px;}.kk-star-ratings .kksr-star.gray{background-image:url(http://www.analyticsvidhya.com/blog/wp-content/plugins/kk-star-ratings/gray.png);}.kk-star-ratings .kksr-star.yellow{background-image:url(http://www.analyticsvidhya.com/blog/wp-content/plugins/kk-star-ratings/yellow.png);}.kk-star-ratings .kksr-star.orange{background-image:url(http://www.analyticsvidhya.com/blog/wp-content/plugins/kk-star-ratings/orange.png);}</style> <script type="text/javascript">/* <![CDATA[ */ jQuery.post("http://www.analyticsvidhya.com/wp-admin/admin-ajax.php", { action: "wmp_update", id: 21820, token: "a2a9ca1a12" }); /* ]]> */</script> 
+<link rel="dns-prefetch" href="http://i0.wp.com/">
+<link rel="dns-prefetch" href="http://i1.wp.com/">
+<link rel="dns-prefetch" href="http://i2.wp.com/">
+ 
+<meta property="og:url" content="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/">
+<meta property="og:title" content="Do Faster Data Manipulation using These 7 R Packages">
+<meta property="og:description" content="Introduction Data Manipulation is an inevitable phase of predictive modeling. A robust predictive model can&#39;t just be built using machine learning algorithms. But, with an approach to understand the business problem, the underlying data, performing required data manipulations and then extracting business insights. Among these several phases of model building, most of the time is usually">
+<meta property="og:image" content="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/datar.jpg?resize=200%2C200">
+ 
+<link rel="canonical" href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/">
+<style type="text/css">.pagethumb{height:141px;}#wpstats{display:none;}.trainingthumb{width:10%;}.training{padding-left:95px!important;}.admininfo{display:none;}.featurtr{height:25px;}#listcategorypostswidget-2 ul li a,#listcategorypostswidget-3 ul li a{font-size:16px;line-height:1.4em;letter-spacing:0.1px;font-family:"Oswald",Arial,sans-serif;color:#333;}#latestdiscoursepostswidget-3 ul li a,#latestdiscoursepostswidget-2 ul li a{font-size:16px;line-height:1.4em;letter-spacing:0.1px;font-family:"Oswald",Arial,sans-serif;color:#333;}.widget_menus ul li{width:53%;}.cntctfrm_label,.cntctfrm_input,.cntctfrm_select,.cntctfrm_checkbox{max-width:100%;margin:5px;}.cntctfrm_contact_submit{-moz-border-bottom-colors:none;-moz-border-left-colors:none;-moz-border-right-colors:none;-moz-border-top-colors:none;background:none repeat scroll 0 0 #151515;border-bottom:0 none!important;border-image:none;border-left:medium none;border-radius:3px;border-right:medium none;border-top:medium none;color:#fff;display:inline-block;font-family:"Oswald",Arial,sans-serif;font-size:13px;letter-spacing:0.4px;opacity:0.8;padding:9px 20px;text-transform:uppercase;transition:all 0.3s linear 0s;}#body-maha{background-color:#fff;background-image:url("/wp-content/uploads/2015/02/wild-sea24.jpg");background-repeat:repeat;background-position:center center;}.page-id-12650 #body-maha #body-background #off-canvas-body .page-wrapper .page-default #cur-page .post-box-oblog.animated.fadeInUp{padding-left:0px;}.sidebar .block-cap h3{margin-bottom:10px;}#text-8 .textwidget{height:260px!important;}.pagetitle-divider{border-bottom:4px solid #333333;display:block;margin:15px 0 16px;}#resultip{margin-left:0px;}.text-content a{color:#00F;}.submit a{background:none repeat scroll 0 0 #D34821;border:medium none;border-radius:3px;color:#fff;font-family:"Oswald",Arial,sans-serif;font-size:15px;letter-spacing:.3px;padding:10px 15px;text-transform:uppercase;}.submit{background:none repeat scroll 0 0 #D34821;border:medium none;border-radius:3px;color:#fff;font-family:"Oswald",Arial,sans-serif;font-size:15px;letter-spacing:.3px;padding:10px 15px;text-transform:uppercase;width:18%;float:right;}.jobsform{border-top:0!important;border-bottom:0!important;}.jobsform tr{padding:5px 20px;border-top:0!important;border-bottom:0!important;}.jobsform .jobstext{margin:0;height:35px;width:60%;padding:2px 5px;}.jobsform .submit{width:100%;}.star{color:#E00202;}.textwidget{height:auto!important;}.popup-bg-1{clear:both;background-color:#E32626;height:10px;margin:-10px;}.h5-popup{font-size:28px;margin-top:20px!important;}.h6-popup{font-size:19px;color:#02396F;}.p-popup{color:#02396F;font-size:16px;}.popup-email{background-color:#fff;width:50%;border:1px solid #ccc;font-size:16px;line-height:24px;padding:10px 6px;overflow:hidden;outline:none;margin:0 0 15px;vertical-align:middle;height:46px;}.popup-subscribe{background-color:#be1616;background-image:none;width:35%!important;height:41px!important;cursor:pointer;float:right!important;color:#FFF!important;font-size:18px;margin-right:62px;margin-top:-65px;}.popup-ul{color:#02396F;font-weight:bold;}.popup-ul li{list-style:none;background:url("http://www.analyticsvidhya.com/wp-content/plugins/dreamgrow-scroll-triggered-box/themes/clean_white/bullet.png") 0 6px no-repeat;padding:0 0 0 25px;line-height:17px;}.main-ul-nav ul li a{padding:0 9px;}.text-content p{font-size:16px;line-height:25px;}.jp-relatedposts-headline{font-size:22px!important;line-height:1.2em!important;text-transform:uppercase!important;border-bottom:4px solid #333!important;display:inline-block!important;margin:0px 0px -1px!important;padding:0px 3px 9px!important;}.jp-relatedposts-post-a{line-height:1.4em!important;letter-spacing:0.2px!important;color:#333!important;font-weight:500!important;font-size:16px!important;word-wrap:break-word!important;font-family:"Oswald",Arial,sans-serif!important;}.top_users{margin-top:-23px;width:100%;text-align:center;border-top:none!important;border-bottom:1px solid #999;}.top_users tr:nth-of-type(odd){background-color:#f9f9f9;}.top_users_li{padding-left:0px;margin-left:0px;}.top_users_td_image{width:60px;border:0px;}.top_users_img{height:40px;border-radius:25px;}.top_users_name_td{text-align:left;}.top_users_name{margin-left:10px;}.top_users_more{float:right;margin-right:10px;}.wpcf7 .wpcf7-form-control-wrap input,.wpcf7 .wpcf7-form-control-wrap textarea{margin-bottom:0px;width:auto!important;}.adslot_1{width:320px;height:100px;}@media (min-width:500px) {.adslot_1{width:468px;height:60px;}}@media (min-width:800px) {.adslot_1{width:728px;height:90px;}}@media (min-width:1200px) {.adslot_1{width:970px;height:90px;}}.adslot_2{width:320px;height:100px;}@media (min-width:500px) {.adslot_2{width:468px;height:60px;}}@media (min-width:800px) {.adslot_2{width:728px;height:90px;}}@media (min-width:1200px) {.adslot_2{width:728px;height:90px;}}</style> <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40101183-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40101183-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script>
+if(! /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {     
+jQuery(document).ready(function(){
+jQuery( ".col-sm-12" ).removeClass( "myrun" );    
+});
+}
+</script>
+<link rel="stylesheet" type="text/css" id="gravatar-card-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="./Do Faster Data Manipulation using These 7 R Packages_files/services.css"></head>
+<body class="single single-post postid-21820 single-format-standard unknown mh-body">
+<div id="body-maha" class="body-maha">
+<nav id="mobile-bar-sticky" role="navigation" class="mobile-bar bar-sticky">
+<div id="close-mobile-bar"><i class="icon-cancel"></i></div>
+<div id="search-mobile-bar"><form action="http://www.analyticsvidhya.com/" class="searchform" method="get">
+<button class="search-button"><i class="icon-search"></i></button>
+<input type="text" name="s" value="Search" onfocus="if(this.value==&#39;Search&#39;)this.value=&#39;&#39;;" onblur="if(this.value==&#39;&#39;)this.value=&#39;Search&#39;;" autocomplete="off">
+</form></div>
+<ul id="menu-main-menu" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home mh-navcat-0"><span></span><a href="http://www.analyticsvidhya.com/">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children mh-navcat-0"><span class="navmob-sub-menu"><i class="icon-down-open-mini"></i></span><a href="http://www.analyticsvidhya.com/blog/">Blog</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children mh-navcat-5"><span class="navmob-sub-menu"><i class="icon-down-open-mini"></i></span><a href="http://www.analyticsvidhya.com/blog/category/business-analytics/">Business Analytics</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category mh-navcat-11"><span></span><a href="http://www.analyticsvidhya.com/blog/category/sas/">SAS</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent mh-navcat-72"><span></span><a href="http://www.analyticsvidhya.com/blog/category/r/">R</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category mh-navcat-396"><span></span><a href="http://www.analyticsvidhya.com/blog/category/python-2/">Python</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children mh-navcat-8"><span class="navmob-sub-menu"><i class="icon-down-open-mini"></i></span><a href="http://www.analyticsvidhya.com/blog/category/business-intelligence/">Business Intelligence</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category mh-navcat-9"><span></span><a href="http://www.analyticsvidhya.com/blog/category/qlikview/">Qlikview</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category mh-navcat-25"><span></span><a href="http://www.analyticsvidhya.com/blog/category/web-analytics-2/">Web Analytics</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category mh-navcat-29"><span></span><a href="http://www.analyticsvidhya.com/blog/category/big-data/">Big data</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category mh-navcat-2284"><span></span><a href="http://www.analyticsvidhya.com/blog/category/infographics/">Infographics</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page mh-navcat-170"><span></span><a href="http://www.analyticsvidhya.com/jobs/">Jobs</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page mh-navcat-0"><span></span><a href="http://www.analyticsvidhya.com/trainings/">Trainings</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom mh-navcat-0"><span></span><a href="http://discuss.analyticsvidhya.com/">Discuss</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children mh-navcat-0"><span class="navmob-sub-menu"><i class="icon-down-open-mini"></i></span><a href="http://www.analyticsvidhya.com/learning-paths-data-science-business-analytics-business-intelligence-big-data/">Learning Paths</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-post_type menu-item-object-page mh-navcat-0"><span></span><a href="http://www.analyticsvidhya.com/learning-paths-data-science-business-analytics-business-intelligence-big-data/learning-path-business-analyst-sas/">SAS Business Analyst</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page mh-navcat-0"><span></span><a href="http://www.analyticsvidhya.com/learning-paths-data-science-business-analytics-business-intelligence-big-data/learning-path-r-data-science/">LeaRn Data Science on R</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page mh-navcat-0"><span></span><a href="http://www.analyticsvidhya.com/learning-paths-data-science-business-analytics-business-intelligence-big-data/learning-path-data-science-python/">Data Science in Python</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page mh-navcat-0"><span></span><a href="http://www.analyticsvidhya.com/learning-paths-data-science-business-analytics-business-intelligence-big-data/weka-gui-learn-machine-learning/">DATA SCIENCE IN WEKA</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page mh-navcat-0"><span></span><a href="http://www.analyticsvidhya.com/learning-paths-data-science-business-analytics-business-intelligence-big-data/tableau-learning-path/">Data Visualization with Tableau</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page mh-navcat-0"><span></span><a href="http://www.analyticsvidhya.com/learning-paths-data-science-business-analytics-business-intelligence-big-data/qlikview-learning-path/">Data Visualization with QlikView</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page mh-navcat-0"><span></span><a href="http://www.analyticsvidhya.com/learning-paths-data-science-business-analytics-business-intelligence-big-data/newbie-d3-js-expert-complete-path-create-interactive-visualization-d3-js/">Interactive Data Stories with D3.js</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children mh-navcat-0"><span class="navmob-sub-menu"><i class="icon-down-open-mini"></i></span><a href="http://datahack.analyticsvidhya.com/">DataHack</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-custom menu-item-object-custom mh-navcat-0"><span></span><a href="http://datahack.analyticsvidhya.com/contest/all">Hackathons</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom mh-navcat-1915"><span></span><a href="http://www.analyticsvidhya.com/blog/category/events/">Events</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom mh-navcat-0"><span></span><a href="http://www.analyticsvidhya.com/about-me/write/">Write For Us</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page mh-navcat-0"><span></span><a href="http://www.analyticsvidhya.com/contact/">Contact Us</a></li>
+</ul> </nav>
+ 
+<div id="body-background">
+ 
+<div id="off-canvas-body" class="off-canvas-body animati-on" style="margin-top: 0px;">
+ 
+<div id="top-bar-sticky" class="bar-sticky">
+<div class="top-bar">
+ 
+<div class="container">
+<div class="row">
+<div class="col-sm-12">
+<div id="top-right-nav" class="ul-nav">
+<ul>
+<li><a target="_blank" href="https://www.facebook.com/AnalyticsVidhya"><i class="icon-facebook"></i></a></li><li><a target="_blank" href="https://twitter.com/analyticsvidhya"><i class="icon-twitter"></i></a></li><li><a target="_blank" href="https://plus.google.com/+Analyticsvidhya/posts"><i class="icon-gplus"></i></a></li><li><a target="_blank" href="https://www.linkedin.com/groups/Analytics-Vidhya-Learn-everything-about-5057165"><i class="icon-linkedin"></i></a></li> </ul>
+</div>
+<nav id="top-nav-wrapper" class="ul-nav">
+<ul id="menu-top" class="menu"><li id="menu-item-12951" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12951 mh-navcat-0"><span></span><a href="http://www.analyticsvidhya.com/">Home</a></li>
+<li id="menu-item-12992" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12992 mh-navcat-0"><span></span><a href="http://www.analyticsvidhya.com/blog/">Blog</a></li>
+<li id="menu-item-12658" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12658 mh-navcat-170"><span></span><a href="http://www.analyticsvidhya.com/jobs/">Jobs</a></li>
+<li id="menu-item-12643" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12643 mh-navcat-0"><span></span><a href="http://www.analyticsvidhya.com/trainings/">Trainings</a></li>
+<li id="menu-item-12644" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12644 mh-navcat-0"><span></span><a href="http://www.analyticsvidhya.com/learning-paths-data-science-business-analytics-business-intelligence-big-data/">Learning Paths</a></li>
+<li id="menu-item-12952" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12952 mh-navcat-0"><span></span><a href="http://discuss.analyticsvidhya.com/">Discuss</a></li>
+<li id="menu-item-20125" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20125 mh-navcat-0"><span></span><a href="http://datahack.analyticsvidhya.com/">DataHack</a></li>
+</ul> </nav>
+<nav id="top-mobile-wrapper" class="ul-nav">
+<ul><li><a><i class="icon-menu"></i></a></li></ul>
+</nav>
+</div>
+</div>
+</div>
+ 
+</div>
+</div>
+ 
+ 
+<div class="main-logo-ads-wrap">
+<div class="main-logo-ads">
+ 
+<div class="container">
+<div class="row ">
+<div class="col-sm-12">
+ 
+<div id="thelogo" class="logo ">
+<a href="http://www.analyticsvidhya.com/">
+<img alt="Analytics Vidhya - Learn everything about Analytics" src="./Do Faster Data Manipulation using These 7 R Packages_files/analytics-logo-300x70.jpg" data-retina="https://www.analyticsvidhya.com/wp-content/uploads/2014/12/analytics-logo-300x70.jpg" data-first="https://www.analyticsvidhya.com/wp-content/uploads/2014/12/analytics-logo-300x70.jpg" scale="0">
+</a>
+</div>
+<h2 class="site-outline">Learn everything about Analytics</h2>
+ 
+<div id="main-ads" class="">
+<div class="vp-1170 vp-fluid"><a href="http://datahack.analyticsvidhya.com/contest/strategic-thinking" target="_blank"><img src="./Do Faster Data Manipulation using These 7 R Packages_files/mini-hack-strategic-1.jpg" scale="0"></a></div>
+<div class="vp-970 vp-750"><a href="http://datahack.analyticsvidhya.com/contest/strategic-thinking" target="_blank"><img src="./Do Faster Data Manipulation using These 7 R Packages_files/mini-hack-strategic-2.jpg" scale="0"></a></div>
+<div class="vp-320"><a href="http://datahack.analyticsvidhya.com/contest/strategic-thinking" target="_blank"><img src="./Do Faster Data Manipulation using These 7 R Packages_files/mini-hack-strategic-3.jpg" scale="0"></a></div>
+</div>
+</div>
+</div>
+</div>
+ 
+</div>
+</div>
+ 
+ 
+ 
+<div id="main-nav-bar" class="main-nav-bar clearfix" style="margin-top: 0px;">
+<div id="main-search" class=" clearfix">
+<div id="con-search" style="top: 57px;">
+<div class="container">
+<div class="cols-sm12">
+<form action="http://www.analyticsvidhya.com/" id="main-search-form">
+ 
+<span class="close-search-form"><i class="icon-cancel"></i></span>
+<span class="loading-search-result"><img src="./Do Faster Data Manipulation using These 7 R Packages_files/loading.gif" alt="" scale="0"></span>
+<input type="text" class="search-field" autocomplete="off" name="s" placeholder="Type here... and hit enter">
+<div class="search-result">
+<div class="container search-result-content">
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="maha-notification container"><div id="main-notif"></div></div>
+<div class="container clearfix">
+</div>
+ 
+<div class="container clearfix">
+<div class="row clearfix">
+<div class="col-sm-12 clearfix">
+ 
+ 
+ 
+<div id="search-nav" class="search-nav clearfix">
+<span class="open-search-form"><i class="icon-search"></i></span>
+</div>
+ 
+ 
+<nav id="main-nav-wrapper" class="main-ul-nav clearfix">
+<div id="thelogosmall" class="logo" style="display: none;">
+<a href="http://www.analyticsvidhya.com/">
+<img alt="Analytics Vidhya - Learn everything about Analytics" src="./Do Faster Data Manipulation using These 7 R Packages_files/analytics-logo-214x501.jpg" data-retina="https://www.analyticsvidhya.com/wp-content/uploads/2015/02/analytics-logo-214x501.jpg" data-first="https://www.analyticsvidhya.com/wp-content/uploads/2015/02/analytics-logo-214x501.jpg" scale="0">
+</a>
+</div>
+<ul id="menu-main-menu-1" class="menu"><li id="menu-item-1463" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home mh-navcat-0"><a href="http://www.analyticsvidhya.com/">Home</a>
+</li>
+<li id="menu-item-12993" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children mh-navcat-0 ord-nav-offset"><a href="http://www.analyticsvidhya.com/blog/">Blog<span class="sub-ord-nav"> <i class="icon-down-open-mini"></i> </span></a><div class="nav-sub-wrap ord-nav"><div class="nsw">
+<div class="nav-sub-menus"><ul>
+<li id="menu-item-2475" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children mh-navcat-5"><a href="http://www.analyticsvidhya.com/blog/category/business-analytics/">Business Analytics<span class="sub-ord-nav"> <i class="icon-right-open-mini"></i> </span></a>
+<div class="nav-sub-wrap ord-nav"><div class="nsw"><div class="nav-sub-menus"><ul>
+<li id="menu-item-2478" class="menu-item menu-item-type-taxonomy menu-item-object-category mh-navcat-11"><a href="http://www.analyticsvidhya.com/blog/category/sas/">SAS</a></li>
+<li id="menu-item-7476" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent mh-navcat-72"><a href="http://www.analyticsvidhya.com/blog/category/r/">R</a></li>
+<li id="menu-item-7713" class="menu-item menu-item-type-taxonomy menu-item-object-category mh-navcat-396"><a href="http://www.analyticsvidhya.com/blog/category/python-2/">Python</a></li>
+</ul></div></div></div>
+</li>
+<li id="menu-item-2476" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children mh-navcat-8"><a href="http://www.analyticsvidhya.com/blog/category/business-intelligence/">Business Intelligence<span class="sub-ord-nav"> <i class="icon-right-open-mini"></i> </span></a>
+<div class="nav-sub-wrap ord-nav"><div class="nsw"><div class="nav-sub-menus"><ul>
+<li id="menu-item-2477" class="menu-item menu-item-type-taxonomy menu-item-object-category mh-navcat-9"><a href="http://www.analyticsvidhya.com/blog/category/qlikview/">Qlikview</a></li>
+<li id="menu-item-2479" class="menu-item menu-item-type-taxonomy menu-item-object-category mh-navcat-25"><a href="http://www.analyticsvidhya.com/blog/category/web-analytics-2/">Web Analytics</a></li>
+</ul></div></div></div>
+</li>
+<li id="menu-item-2474" class="menu-item menu-item-type-taxonomy menu-item-object-category mh-navcat-29"><a href="http://www.analyticsvidhya.com/blog/category/big-data/">Big data</a></li>
+<li id="menu-item-18233" class="menu-item menu-item-type-taxonomy menu-item-object-category mh-navcat-2284"><a href="http://www.analyticsvidhya.com/blog/category/infographics/">Infographics</a></li>
+</ul></div>
+</div></div>
+</li>
+<li id="menu-item-12994" class="menu-item menu-item-type-post_type menu-item-object-page mh-navcat-170"><a href="http://www.analyticsvidhya.com/jobs/">Jobs</a>
+</li>
+<li id="menu-item-7328" class="menu-item menu-item-type-post_type menu-item-object-page mh-navcat-0"><a href="http://www.analyticsvidhya.com/trainings/">Trainings</a>
+</li>
+<li id="menu-item-11881" class="menu-item menu-item-type-custom menu-item-object-custom mh-navcat-0"><a href="http://discuss.analyticsvidhya.com/">Discuss</a>
+</li>
+<li id="menu-item-12170" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children mh-navcat-0 ord-nav-offset"><a href="http://www.analyticsvidhya.com/learning-paths-data-science-business-analytics-business-intelligence-big-data/">Learning Paths<span class="sub-ord-nav"> <i class="icon-down-open-mini"></i> </span></a><div class="nav-sub-wrap ord-nav"><div class="nsw">
+<div class="nav-sub-menus"><ul>
+<li id="menu-item-12503" class="menu-item menu-item-type-post_type menu-item-object-page mh-navcat-0"><a href="http://www.analyticsvidhya.com/learning-paths-data-science-business-analytics-business-intelligence-big-data/learning-path-business-analyst-sas/">SAS Business Analyst</a>
+</li>
+<li id="menu-item-14416" class="menu-item menu-item-type-post_type menu-item-object-page mh-navcat-0"><a href="http://www.analyticsvidhya.com/learning-paths-data-science-business-analytics-business-intelligence-big-data/learning-path-r-data-science/">LeaRn Data Science on R</a>
+</li>
+<li id="menu-item-12171" class="menu-item menu-item-type-post_type menu-item-object-page mh-navcat-0"><a href="http://www.analyticsvidhya.com/learning-paths-data-science-business-analytics-business-intelligence-big-data/learning-path-data-science-python/">Data Science in Python</a>
+</li>
+<li id="menu-item-13207" class="menu-item menu-item-type-post_type menu-item-object-page mh-navcat-0"><a href="http://www.analyticsvidhya.com/learning-paths-data-science-business-analytics-business-intelligence-big-data/weka-gui-learn-machine-learning/">DATA SCIENCE IN WEKA</a>
+</li>
+<li id="menu-item-23077" class="menu-item menu-item-type-post_type menu-item-object-page mh-navcat-0"><a href="http://www.analyticsvidhya.com/learning-paths-data-science-business-analytics-business-intelligence-big-data/tableau-learning-path/">Data Visualization with Tableau</a>
+</li>
+<li id="menu-item-12320" class="menu-item menu-item-type-post_type menu-item-object-page mh-navcat-0"><a href="http://www.analyticsvidhya.com/learning-paths-data-science-business-analytics-business-intelligence-big-data/qlikview-learning-path/">Data Visualization with QlikView</a>
+</li>
+<li id="menu-item-23078" class="menu-item menu-item-type-post_type menu-item-object-page mh-navcat-0"><a href="http://www.analyticsvidhya.com/learning-paths-data-science-business-analytics-business-intelligence-big-data/newbie-d3-js-expert-complete-path-create-interactive-visualization-d3-js/">Interactive Data Stories with D3.js</a>
+</li>
+</ul></div>
+</div></div>
+</li>
+<li id="menu-item-20124" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children mh-navcat-0 ord-nav-offset"><a href="http://datahack.analyticsvidhya.com/">DataHack<span class="sub-ord-nav"> <i class="icon-down-open-mini"></i> </span></a><div class="nav-sub-wrap ord-nav"><div class="nsw">
+<div class="nav-sub-menus"><ul>
+<li id="menu-item-24638" class="menu-item menu-item-type-custom menu-item-object-custom mh-navcat-0"><a href="http://datahack.analyticsvidhya.com/contest/all">Hackathons</a>
+</li>
+<li id="menu-item-24639" class="menu-item menu-item-type-custom menu-item-object-custom mh-navcat-1915"><a href="http://www.analyticsvidhya.com/blog/category/events/">Events</a>
+</li>
+</ul></div>
+</div></div>
+</li>
+<li id="menu-item-22625" class="menu-item menu-item-type-custom menu-item-object-custom mh-navcat-0"><a href="http://www.analyticsvidhya.com/about-me/write/">Write For Us</a>
+</li>
+<li id="menu-item-24641" class="menu-item menu-item-type-post_type menu-item-object-page mh-navcat-0"><a href="http://www.analyticsvidhya.com/contact/">Contact Us</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+ 
+</div>
+ 
+ 
+ 
+<div class="page-wrapper">
+ 
+<div class="mh-el page-sidebar single-regular">
+ 
+<div class="container">
+<div class="row">
+ 
+<div class="col-sm-8">
+<div class="main-content">
+ 
+<div class="maha-crumbs" prefix="v: http://rdf.data-vocabulary.org/#"><span typeof="v:Breadcrumb"><a href="http://www.analyticsvidhya.com/" rel="v:url" property="v:title">Home</a></span> <i class="icon-right-open-mini"></i> <span typeof="v:Breadcrumb"><a rel="v:url" property="v:title" href="http://www.analyticsvidhya.com/blog/category/business-analytics/">Business Analytics</a></span> <i class="icon-right-open-mini"></i> <span typeof="v:Breadcrumb"><a rel="v:url" property="v:title" href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/">Do Faster Data Manipulation using These 7 R Packages</a></span></div> 
+<article id="post-2729" class="main-content single-post-box" itemscope="" itemtype="http://schema.org/Article">
+<header itemscope="" itemtype="http://schema.org/Blog">
+ 
+<meta itemprop="datecreated" content="2015-12-11T04:49:19+00:00">
+<meta itemprop="image" content="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/datar.jpg?resize=500%2C300">
+<meta itemprop="about" content="">
+<h1 itemprop="name" class="entry-title">Do Faster Data Manipulation using These 7 R Packages</h1>
+<div class="hidden" itemscope="" itemtype="http://schema.org/Thing">
+<span itemprop="name">Do Faster Data Manipulation using These 7 R Packages</span>
+</div>
+<div class="meta-count">
+<span class="i-category"><a class="mh-elcat-5" href="http://www.analyticsvidhya.com/blog/category/business-analytics/" title="Business Analytics" rel="category">Business Analytics</a> <a class="mh-elcat-72" href="http://www.analyticsvidhya.com/blog/category/r/" title="R" rel="category">R</a> </span>
+</div>
+<div class="title-divider"></div>
+<div class="meta-share">
+<span class="header-font">SHARE </span>
+<a class="social-facebook" href="http://www.facebook.com/sharer.php?u=http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/&amp;t=Do%20Faster%20Data%20Manipulation%20using%20These%207%20R%20Packages" title="Share on Facebook" target="_blank"><i class="icon-facebook"></i></a>
+<a class="social-twitter" href="https://twitter.com/home?status=Do%20Faster%20Data%20Manipulation%20using%20These%207%20R%20Packages+http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/" title="Share on Twitter" target="_blank"><i class="icon-twitter"></i></a>
+<a class="social-googleplus" href="https://plus.google.com/share?url=http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/" title="Share on Google+" target="_blank"><i class="icon-gplus"></i></a>
+<a class="social-pinterest" href="http://pinterest.com/pin/create/button/?url=http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/&amp;media=http://www.analyticsvidhya.com/wp-content/uploads/2015/12/datar.jpg&amp;description=Do%20Faster%20Data%20Manipulation%20using%20These%207%20R%20Packages" title="Share on Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
+</div>
+<div class="meta-info">
+<span class="ava-auth">
+<img width="14" height="14" class="entry-thumb grav-hashed grav-hijack" src="./Do Faster Data Manipulation using These 7 R Packages_files/9b611a798b408d0b3ab2bbc66479b624" alt="" originals="48" scale="2" id="grav-9b611a798b408d0b3ab2bbc66479b624-0">
+</span>
+<span itemprop="author" itemscope="" itemtype="http://schema.org/Person" class="entry-author">
+<a href="http://www.analyticsvidhya.com/blog/author/manish-saraswat/">
+<span itemprop="name">Manish Saraswat</span>
+</a>
+</span>,
+<time itemprop="datePublished" class="entry-date" content="2015-12-11" datetime="2015-12-11T04:49:19+00:00">
+December 11, 2015 </time>
+<span class="meta-info-divider">/</span>
+<span class="meta-info-comments"><i class="icon-comment"></i><a href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/#comments">10 </a></span>
+</div>
+</header>
+<div class="text-content">
+ 
+<div style="float:none;margin:10px 0 10px 0;text-align:center;">
+<a href="http://admissions.bridgesom.com/pba-new/?utm_source=AV&amp;utm_medium=Banner&amp;utm_campaign=AVBanner" target="_blank" rel="nofollow"><img src="./Do Faster Data Manipulation using These 7 R Packages_files/bridge-april.gif" width="728" height="90" scale="2"></a>
+</div>
+<h2>Introduction</h2>
+<p style="text-align: justify;">Data Manipulation is an inevitable phase of predictive modeling. A robust predictive model can’t just be&nbsp;built using machine learning algorithms. But, with an approach to understand the business problem, the underlying data, performing required data manipulations and then extracting business insights.</p>
+<p style="text-align: justify;">Among these several phases of model building, most of the time is usually spent in understanding underlying data and performing required manipulations. This would also be the focus of this article – packages to perform faster data manipulation in R.</p>
+<p style="text-align: justify;"><a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/datar.jpg"><img class="size-full wp-image-21826 aligncenter" src="./Do Faster Data Manipulation using These 7 R Packages_files/datar.jpg" alt="data manipulation exploration R Packages" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/datar.jpg?w=500 500w, http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/datar.jpg?resize=300%2C180 300w" sizes="(max-width: 500px) 100vw, 500px" width="500" height="300" src-orig="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/datar.jpg?resize=500%2C300" scale="2"></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>What is Data Manipulation ?</h2>
+<p style="text-align: justify;">If you are still confused with this ‘term’, let me explain it to you. Data Manipulation is a loosely used term with ‘Data Exploration’. It involves ‘manipulating’ data using available set of variables. This is done to enhance accuracy and precision associated with data.</p>
+<p style="text-align: justify;">Actually, the data collection process can have&nbsp;many&nbsp;loopholes. There are various uncontrollable factors which lead to inaccuracy in data such as mental situation of respondents, personal biases, difference / error in readings of machines etc. To mitigate these inaccuracies, data manipulation is done to increase&nbsp;the possible (highest) accuracy in data.</p>
+<p style="text-align: justify;">At times, this stage is also known as data wrangling or data cleaning.</p>
+<p>&nbsp;</p>
+<h2>Different Ways to Manipulate / Treat Data:</h2>
+<p style="text-align: justify;">There is no right or wrong way in manipulating data, as long as you understand the data and have taken the necessary actions by the end of the exercise. However, here are a few broad ways in which people try and approach data manipulation. Here are they:</p>
+<ul style="text-align: justify;">
+<li>Usually, beginners on R find themselves comfortable <strong>manipulating&nbsp;data using inbuilt base R functions</strong>. This is a &nbsp;good first step, but is often repetitive and time consuming. &nbsp;Hence, it is a less efficient way to solve the problem.</li>
+<li><strong>Use of packages for data manipulation</strong>.&nbsp;CRAN has more than 7000 packages available today. In simple words, these packages are nothing but a collection of pre-written commonly used pieces of codes. They help you perform the repetitive tasks fasts, reduce errors in coding and take help of code written by experts (across the open source eco-system for R) to make your code more efficient. This is usually the most common way of performing data manipulation.</li>
+<li><strong>Use of ML algorithms for data manipulation.</strong> You can use tree based boosting algorithms to take care of missing data &amp; outliers. While these are definitely less time consuming, these approaches typically leave you wanting for a better understanding of data at the end of it.</li>
+</ul>
+<p style="text-align: justify;">Hence, more often than not, use of packages is the de-facto method to perform data manipulation. In this article, I have explained several packages which make&nbsp;‘R’ life easier during the data manipulation stage.</p>
+<p>&nbsp;</p>
+<p style="text-align: justify;"><strong>Note:</strong> This article is best suited for beginners in R Language. You can install a packages using:</p>
+<p><code>install.packages('package name')</code></p>
+<p>&nbsp;</p>
+<h2>List of Packages</h2>
+<p style="text-align: justify;">For better understanding, I’ve also demonstrated their usage by undertaking commonly used operations. Below is the list of packages discussed in this article:</p>
+<ol>
+<li>dplyr</li>
+<li>data.table</li>
+<li>ggplot2</li>
+<li>reshape2</li>
+<li>readr</li>
+<li>tidyr</li>
+<li>lubridate</li>
+</ol>
+<p style="text-align: justify;"><strong>Note:</strong> I understand ggplot2 is a graphical package. But, it generally helps in visualizing data ( distributions, correlations) and making manipulations accordingly. Hence, I’ve added it in this list. In all packages, I’ve covered only the most commonly used commands in data manipulation.</p>
+<p>&nbsp;</p>
+<h2>dplyr Package</h2>
+<p style="text-align: justify;">This packages is created and maintained by <a href="https://en.wikipedia.org/wiki/Hadley_Wickham" target="_blank" rel="nofollow">Hadley Wickham</a>. This package has everything (almost) to accelerate your data manipulation efforts. It is known best for data exploration and transformation. It’s chaining syntax makes it highly adaptive to use.&nbsp;It includes 5 major data manipulation commands:</p>
+<ol>
+<li style="text-align: justify;">filter – It filters the data based on a condition</li>
+<li style="text-align: justify;">select – It is used to select columns of interest from a data set</li>
+<li style="text-align: justify;">arrange – It is used to arrange data set values on ascending or descending order</li>
+<li style="text-align: justify;">mutate – It is used to create new variables from existing variables</li>
+<li style="text-align: justify;">summarise (with group_by) – It is used to perform analysis by commonly used operations such as&nbsp;min, max, mean count etc</li>
+</ol>
+<p style="text-align: justify;">Simple focus on these commands and do great in data exploration. Let’s understand these commands one by one. I have used 2 pre-installed R data sets namely mtcars and iris.</p>
+<pre>&gt; library(dplyr)
+&gt; data("mtcars")
+&gt; data('iris')</pre>
+<pre>&gt; mydata &lt;- mtcars</pre>
+<pre>#read data
+&gt; head(mydata)
+<a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/1.png"><img class="alignnone size-full wp-image-21835" src="./Do Faster Data Manipulation using These 7 R Packages_files/1.png" alt="1" srcset="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/1.png?w=554 554w, http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/1.png?resize=300%2C58 300w" sizes="(max-width: 554px) 100vw, 554px" width="554" height="108" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/1.png?resize=554%2C108" scale="2"></a></pre>
+<pre>#creating a local dataframe. Local data frame are easier to read
+
+&gt; mynewdata &lt;- tbl_df(mydata)
+&gt; myirisdata &lt;- tbl_df(iris)
+
+</pre>
+<pre>#now data will be in tabular structure
+&gt; mynewdata
+
+<img class="alignnone size-full wp-image-21836" src="./Do Faster Data Manipulation using These 7 R Packages_files/2.png" alt="2" srcset="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.png?w=550 550w, http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.png?resize=300%2C124 300w" sizes="(max-width: 550px) 100vw, 550px" width="550" height="227" src-orig="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.png?resize=550%2C227" scale="2">
+
+&gt; myirisdata
+
+<a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/1.1.png"><img class="alignnone size-full wp-image-21841" src="./Do Faster Data Manipulation using These 7 R Packages_files/1.1.png" alt="1.1" srcset="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/1.1.png?w=488 488w, http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/1.1.png?resize=300%2C125 300w" sizes="(max-width: 488px) 100vw, 488px" width="488" height="203" src-orig="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/1.1.png?resize=488%2C203" scale="2"></a></pre>
+<pre>#use filter to filter data with required condition
+&gt; filter(mynewdata, cyl &gt; 4 &amp; gear &gt; 4 )
+
+<a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.png"><img class="alignnone size-full wp-image-21837" src="./Do Faster Data Manipulation using These 7 R Packages_files/3.png" alt="3" srcset="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.png?w=546 546w, http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.png?resize=300%2C59 300w" sizes="(max-width: 546px) 100vw, 546px" width="546" height="108" src-orig="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.png?resize=546%2C108" scale="2">
+</a>
+&gt; filter(mynewdata, cyl &gt; 4)
+
+<a href="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/4.png"><img class="alignnone size-full wp-image-21838" src="./Do Faster Data Manipulation using These 7 R Packages_files/4.png" alt="4" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/4.png?w=553 553w, http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/4.png?resize=300%2C123 300w" sizes="(max-width: 553px) 100vw, 553px" width="553" height="226" src-orig="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/4.png?resize=553%2C226" scale="2">
+</a>
+&gt; filter(myirisdata, Species %in% c('setosa', 'virginica'))
+
+<a href="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.png"><img class="alignnone size-full wp-image-21839" src="./Do Faster Data Manipulation using These 7 R Packages_files/5.png" alt="5" srcset="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.png?w=488 488w, http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.png?resize=300%2C140 300w" sizes="(max-width: 488px) 100vw, 488px" width="488" height="227" src-orig="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.png?resize=488%2C227" scale="2"></a></pre>
+<pre>#use select to pick columns by name
+&gt; select(mynewdata, cyl,mpg,hp)
+
+<a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/6.png"><img class="alignnone size-full wp-image-21842" src="./Do Faster Data Manipulation using These 7 R Packages_files/6.png" alt="6" width="168" height="208" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/6.png?zoom=2&amp;resize=168%2C208" src-orig="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/6.png?resize=168%2C208" scale="2">
+</a>
+#here you can use (-) to hide columns
+&gt; select(mynewdata, -cyl, -mpg ) 
+
+<a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/7.png"><img class="alignnone size-full wp-image-21843" src="./Do Faster Data Manipulation using These 7 R Packages_files/7.png" alt="7" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/7.png?w=459 459w, http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/7.png?resize=300%2C133 300w" sizes="(max-width: 459px) 100vw, 459px" width="459" height="204" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/7.png?resize=459%2C204" scale="2"></a>
+#hide a range of columns
+&gt; select(mynewdata, -c(cyl,mpg))</pre>
+<pre><a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/7.png"><img class="alignnone size-full wp-image-21843" src="./Do Faster Data Manipulation using These 7 R Packages_files/7.png" alt="7" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/7.png?w=459 459w, http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/7.png?resize=300%2C133 300w" sizes="(max-width: 459px) 100vw, 459px" width="459" height="204" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/7.png?resize=459%2C204" scale="2"></a>
+
+#select series of columns
+
+&gt; select(mynewdata, cyl:gear)
+
+<a href="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/8.png"><img class="alignnone size-full wp-image-21844" src="./Do Faster Data Manipulation using These 7 R Packages_files/8.png" alt="8" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/8.png?w=457 457w, http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/8.png?resize=300%2C133 300w" sizes="(max-width: 457px) 100vw, 457px" width="457" height="203" src-orig="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/8.png?resize=457%2C203" scale="2">
+</a></pre>
+<pre>#chaining or pipelining - a way to perform multiple operations
+#in one line
+&gt; mynewdata %&gt;%
+     select(cyl, wt, gear)%&gt;%
+     filter(wt &gt; 2)
+
+<a href="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/9.png"><img class="alignnone size-full wp-image-21845" src="./Do Faster Data Manipulation using These 7 R Packages_files/9.png" alt="9" width="172" height="202" srcset="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/9.png?zoom=2&amp;resize=172%2C202" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/9.png?resize=172%2C202" scale="2"></a>
+
+</pre>
+<pre>#arrange can be used to reorder rows
+&gt; mynewdata%&gt;%
+     select(cyl, wt, gear)%&gt;%
+     arrange(wt)
+
+<a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/10.png"><img class="alignnone size-full wp-image-21847" src="./Do Faster Data Manipulation using These 7 R Packages_files/10.png" alt="10" width="174" height="201" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/10.png?zoom=2&amp;resize=174%2C201" src-orig="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/10.png?resize=174%2C201" scale="2"></a></pre>
+<pre>#or</pre>
+<pre>&gt; mynewdata%&gt;%
+     select(cyl, wt, gear)%&gt;%
+     arrange(desc(wt))
+
+<a href="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/11.png"><img class="alignnone size-full wp-image-21848" src="./Do Faster Data Manipulation using These 7 R Packages_files/11.png" alt="11" width="169" height="202" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/11.png?zoom=2&amp;resize=169%2C202" src-orig="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/11.png?resize=169%2C202" scale="2"></a></pre>
+<pre>#mutate - create new variables
+
+&gt; mynewdata %&gt;%
+      select(mpg, cyl)%&gt;%
+      mutate(newvariable = mpg*cyl)
+
+<a href="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/12.png"><img class="alignnone size-full wp-image-21849" src="./Do Faster Data Manipulation using These 7 R Packages_files/12.png" alt="12" width="219" height="200" srcset="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/12.png?zoom=2&amp;resize=219%2C200" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/12.png?resize=219%2C200" scale="2"></a></pre>
+<pre>#or</pre>
+<pre>&gt; newvariable &lt;- mynewdata %&gt;% mutate(newvariable = mpg*cyl)
+
+</pre>
+<pre>#summarise - this is used to find insights from data
+&gt; myirisdata%&gt;%
+       group_by(Species)%&gt;%
+       summarise(Average = mean(Sepal.Length, na.rm = TRUE))</pre>
+<pre><a href="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/13.png"><img class="alignnone size-full wp-image-21850" src="./Do Faster Data Manipulation using These 7 R Packages_files/13.png" alt="13" width="180" height="83" srcset="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/13.png?zoom=2&amp;resize=180%2C83" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/13.png?resize=180%2C83" scale="2"></a>
+
+#or use summarise each</pre>
+<pre>&gt; myirisdata%&gt;%
+      group_by(Species)%&gt;%
+      summarise_each(funs(mean, n()), Sepal.Length, Sepal.Width)
+
+<a href="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/14.png"><img class="alignnone size-full wp-image-21851" src="./Do Faster Data Manipulation using These 7 R Packages_files/14.png" alt="14" srcset="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/14.png?w=616 616w, http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/14.png?resize=300%2C36 300w" sizes="(max-width: 616px) 100vw, 616px" width="616" height="74" src-orig="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/14.png?resize=616%2C74" scale="2"></a>
+
+#You can create complex chain commands using these 5 verbs.</pre>
+<pre>#you can rename the variables using rename command
+&gt; mynewdata %&gt;% rename(miles = mpg)
+
+<a href="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/15.png"><img class="alignnone size-full wp-image-21852" src="./Do Faster Data Manipulation using These 7 R Packages_files/15.png" alt="15" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/15.png?w=556 556w, http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/15.png?resize=300%2C109 300w" sizes="(max-width: 556px) 100vw, 556px" width="556" height="202" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/15.png?resize=556%2C202" scale="2">
+</a></pre>
+<p>&nbsp;</p>
+<h2>data.table Package</h2>
+<p style="text-align: justify;">This package allows you to perform faster manipulation in a data set. Leave your traditional ways of sub setting rows and columns and use this package. With minimum coding, you can do much more. Using data.table helps in reducing computing time as compared to data.frame. You’ll be astonished by the simplicity of this package.</p>
+<p style="text-align: justify;">A data table has 3 parts namely DT[i,j,by]. You can understand this as, we can tell R to subset the rows using ‘i’, to calculate ‘j’ which is grouped by ‘by’. Most of the times, ‘by’ relates to categorical variable. In the code below, I’ve used 2 data sets (airquality and iris).</p>
+<pre>#load data
+&gt; data("airquality")
+&gt; mydata &lt;- airquality
+&gt; head(airquality,6)
+
+<a href="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.1.png"><img class="alignnone size-full wp-image-21853" src="./Do Faster Data Manipulation using These 7 R Packages_files/2.1.png" alt="2.1" width="297" height="105" srcset="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.1.png?zoom=2&amp;resize=297%2C105" src-orig="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.1.png?resize=297%2C105" scale="2"></a></pre>
+<pre>&gt; data(iris)
+&gt; myiris &lt;- iris</pre>
+<pre>#load package
+&gt; library(data.table)</pre>
+<pre>&gt; mydata &lt;- data.table(mydata)
+&gt; mydata
+
+<a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.2.png"><img class="alignnone size-full wp-image-21854" src="./Do Faster Data Manipulation using These 7 R Packages_files/2.2.png" alt="2.2" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.2.png?w=321 321w, http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.2.png?resize=300%2C170 300w" sizes="(max-width: 321px) 100vw, 321px" width="321" height="182" src-orig="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.2.png?resize=321%2C182" scale="2"></a></pre>
+<pre>&gt; myiris &lt;- data.table(myiris)
+&gt; myiris
+
+<a href="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.3.png"><img class="alignnone size-full wp-image-21855" src="./Do Faster Data Manipulation using These 7 R Packages_files/2.3.png" alt="2.3" srcset="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.3.png?w=523 523w, http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.3.png?resize=300%2C104 300w" sizes="(max-width: 523px) 100vw, 523px" width="523" height="181" src-orig="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.3.png?resize=523%2C181" scale="2"></a></pre>
+<pre>#subset rows - select 2nd to 4th row
+
+&gt; mydata[2:4,]</pre>
+<pre><a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.4.png"><img class="alignnone size-full wp-image-21856" src="./Do Faster Data Manipulation using These 7 R Packages_files/2.4.png" alt="2.4" width="298" height="60" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.4.png?zoom=2&amp;resize=298%2C60" src-orig="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.4.png?resize=298%2C60" scale="2"></a>
+
+#select columns with particular values
+&gt; myiris[Species == 'setosa']
+
+<a href="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.5.png"><img class="alignnone size-full wp-image-21858" src="./Do Faster Data Manipulation using These 7 R Packages_files/2.5.png" alt="2.5" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.5.png?w=498 498w, http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.5.png?resize=300%2C111 300w" sizes="(max-width: 498px) 100vw, 498px" width="498" height="184" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.5.png?resize=498%2C184" scale="2"></a></pre>
+<pre>#select columns with multiple values. This will give you columns with Setosa
+#and virginica species
+&gt; myiris[Species %in% c('setosa', 'virginica')]
+
+#select columns. Returns a vector
+&gt; mydata[,Temp]
+
+<a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.6.png"><img class="alignnone size-full wp-image-21859" src="./Do Faster Data Manipulation using These 7 R Packages_files/2.6.png" alt="2.6" srcset="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.6.png?w=690 690w, http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.6.png?resize=300%2C41 300w" sizes="(max-width: 690px) 100vw, 690px" width="690" height="94" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.6.png?resize=690%2C94" scale="2">
+</a></pre>
+<pre>&gt; mydata[,.(Temp,Month)]
+
+<a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.7.png"><img class="alignnone size-full wp-image-21860" src="./Do Faster Data Manipulation using These 7 R Packages_files/2.7.png" alt="2.7" width="134" height="183" srcset="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.7.png?zoom=2&amp;resize=134%2C183" src-orig="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.7.png?resize=134%2C183" scale="2"></a>
+
+</pre>
+<pre>#returns sum of selected column
+&gt; mydata[,sum(Ozone, na.rm = TRUE)]
+
+[1]4887</pre>
+<pre>#returns sum and standard deviation
+&gt; mydata[,.(sum(Ozone, na.rm = TRUE), sd(Ozone, na.rm = TRUE))]
+
+<a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.8.png"><img class="alignnone size-full wp-image-21861" src="./Do Faster Data Manipulation using These 7 R Packages_files/2.8.png" alt="2.8" width="137" height="32" srcset="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.8.png?zoom=2&amp;resize=137%2C32" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.8.png?resize=137%2C32" scale="2">
+</a></pre>
+<pre>#print and plot
+&gt; myiris[,{print(Sepal.Length)
+&gt; plot(Sepal.Width)
+ NULL}]
+
+<a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.99.png"><img class="alignnone size-full wp-image-21862" src="./Do Faster Data Manipulation using These 7 R Packages_files/2.99.png" alt="2.99" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.99.png?w=690 690w, http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.99.png?resize=300%2C54 300w" sizes="(max-width: 690px) 100vw, 690px" width="690" height="124" src-orig="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.99.png?resize=690%2C124" scale="2"></a>
+<a href="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.9.png"><img class="alignnone size-full wp-image-21863" src="./Do Faster Data Manipulation using These 7 R Packages_files/2.9.png" alt="2.9" srcset="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.9.png?w=703 703w, http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.9.png?resize=300%2C92 300w" sizes="(max-width: 703px) 100vw, 703px" width="703" height="216" src-orig="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.9.png?resize=703%2C216" scale="2"></a></pre>
+<pre>#grouping by a variable
+&gt; myiris[,.(sepalsum = sum(Sepal.Length)), by=Species]
+
+<a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.10.png"><img class="alignnone size-full wp-image-21864" src="./Do Faster Data Manipulation using These 7 R Packages_files/2.10.png" alt="2.10" width="187" height="62" srcset="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.10.png?zoom=2&amp;resize=187%2C62" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/2.10.png?resize=187%2C62" scale="2"></a></pre>
+<pre>#select a column for computation, hence need to set the key on column
+&gt; setkey(myiris, Species)
+
+#selects all the rows associated with this data point
+&gt; myiris['setosa']
+&gt; myiris[c('setosa', 'virginica')]</pre>
+<p>&nbsp;</p>
+<h2>ggplot2 Package</h2>
+<p style="text-align: justify;">ggplot offers a whole new world of colors and patterns. If you are a creative soul, you would love this package till depth. But, if you wish learn what is necessary to get started, follow the codes below. You must learn the ways to at least plot these 3 graphs: Scatter Plot, Bar Plot, Histogram.</p>
+<p style="text-align: justify;">These 3 chart patterns covers almost every type of data representation except maps. ggplot is enriched with customized features to make your visualization better and better. It becomes even more powerful when grouped with other packages like cowplot, gridExtra. In fact, there are a lot of features. Hence, you must focus on few commands and build your expertise on them. I have also shown the method to compare graphs in one window. It requires ‘gridExtra’ package. Hence, you must install it. I’ve use pre-installed R data sets.</p>
+<pre>&gt; library(ggplot2)
+&gt; library(gridExtra)
+&gt; df &lt;- ToothGrowth</pre>
+<pre>&gt; df$dose &lt;- as.factor(df$dose)
+&gt; head(df)
+
+<a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.1.png"><img class="alignnone size-full wp-image-21865" src="./Do Faster Data Manipulation using These 7 R Packages_files/3.1.png" alt="3.1" width="137" height="107" srcset="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.1.png?zoom=2&amp;resize=137%2C107" src-orig="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.1.png?resize=137%2C107" scale="2"></a></pre>
+<pre>#boxplot
+&gt; bp &lt;- ggplot(df, aes(x = dose, y = len, color = dose)) + geom_boxplot() + theme(legend.position = 'none')
+&gt; bp
+
+<a href="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.2.png"><img class="alignnone size-full wp-image-21866" src="./Do Faster Data Manipulation using These 7 R Packages_files/3.2.png" alt="3.2" srcset="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.2.png?w=718 718w, http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.2.png?resize=300%2C122 300w" sizes="(max-width: 718px) 100vw, 718px" width="718" height="291" src-orig="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.2.png?resize=718%2C291" scale="2"></a></pre>
+<pre>#add gridlines
+&gt; bp + background_grid(major = "xy", minor = 'none')
+
+<a href="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.3.png"><img class="alignnone size-full wp-image-21867" src="./Do Faster Data Manipulation using These 7 R Packages_files/3.3.png" alt="3.3" srcset="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.3.png?w=723 723w, http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.3.png?resize=300%2C119 300w" sizes="(max-width: 723px) 100vw, 723px" width="723" height="286" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.3.png?resize=723%2C286" scale="2"></a></pre>
+<pre>#scatterplot
+&gt; sp &lt;- ggplot(mpg, aes(x = cty, y = hwy, color = factor(cyl)))+geom_point(size = 2.5)
+&gt; sp
+
+<a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.4.png"><img class="alignnone size-full wp-image-21868" src="./Do Faster Data Manipulation using These 7 R Packages_files/3.4.png" alt="3.4" srcset="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.4.png?w=714 714w, http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.4.png?resize=300%2C122 300w" sizes="(max-width: 714px) 100vw, 714px" width="714" height="290" src-orig="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.4.png?resize=714%2C290" scale="2"></a></pre>
+<pre>#barplot
+&gt; bp &lt;- ggplot(diamonds, aes(clarity, fill = cut)) + geom_bar() +theme(axis.text.x = element_text(angle = 70, vjust = 0.5))
+&gt; bp
+
+<a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.5.png"><img class="alignnone size-full wp-image-21869" src="./Do Faster Data Manipulation using These 7 R Packages_files/3.5.png" alt="3.5" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.5.png?w=706 706w, http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.5.png?resize=300%2C124 300w" sizes="(max-width: 706px) 100vw, 706px" width="706" height="291" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.5.png?resize=706%2C291" scale="2"></a></pre>
+<pre>#compare two plots
+&gt; plot_grid(sp, bp, labels = c("A","B"), ncol = 2, nrow = 1)
+
+<a href="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.6.png"><img class="alignnone size-full wp-image-21870" src="./Do Faster Data Manipulation using These 7 R Packages_files/3.6.png" alt="3.6" srcset="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.6.png?w=715 715w, http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.6.png?resize=300%2C124 300w" sizes="(max-width: 715px) 100vw, 715px" width="715" height="296" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.6.png?resize=715%2C296" scale="2"></a>
+
+#histogram
+&gt; ggplot(diamonds, aes(x = carat)) + geom_histogram(binwidth = 0.25, fill = 'steelblue')+scale_x_continuous(breaks=seq(0,3, by=0.5))
+
+<a href="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.7.png"><img class="alignnone size-full wp-image-21871" src="./Do Faster Data Manipulation using These 7 R Packages_files/3.7.png" alt="3.7" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.7.png?w=719 719w, http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.7.png?resize=300%2C122 300w" sizes="(max-width: 719px) 100vw, 719px" width="719" height="293" src-orig="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/3.7.png?resize=719%2C293" scale="2"></a></pre>
+<p>For more information on this package, you refer to cheatsheet here: <a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf" target="_blank" rel="nofollow">ggplot2 cheatsheet</a></p>
+<p>&nbsp;</p>
+<h2>reshape2 Package</h2>
+<p style="text-align: justify;">As the name suggests, this package is useful in reshaping data. We all know the data come in many forms. Hence, we are required to tame it according to our need. Usually, the process of reshaping data in R is tedious and worrisome. R base functions consist of ‘Aggregation’ option using which data can be reduced and rearranged into smaller forms, but with reduction in amount of information. Aggregation includes tapply, by and aggregate base functions.&nbsp;The reshape package overcome these problems. Here we try to combine features which have unique values. It has 2 functions namely <em>melt</em> and <em>cast</em>.</p>
+<p style="text-align: justify;"><strong>melt</strong> : This function converts data from wide format to long format. It’s a form of restructuring where multiple categorical columns are ‘melted’ into unique rows. Let’s understand it using the code below.</p>
+<pre>#create a data
+&gt; ID &lt;- c(1,2,3,4,5)
+&gt; Names &lt;- c('Joseph','Matrin','Joseph','James','Matrin')
+&gt; DateofBirth &lt;- c(1993,1992,1993,1994,1992)
+&gt; Subject&lt;- c('Maths','Biology','Science','Psycology','Physics')</pre>
+<pre>&gt; thisdata &lt;- data.frame(ID, Names, DateofBirth, Subject)
+&gt; data.table(thisdata)
+
+<a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/4.1.png"><img class="alignnone size-full wp-image-21874" src="./Do Faster Data Manipulation using These 7 R Packages_files/4.1.png" alt="4.1" width="280" height="95" srcset="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/4.1.png?zoom=2&amp;resize=280%2C95" src-orig="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/4.1.png?resize=280%2C95" scale="2">
+</a></pre>
+<pre>#load package
+&gt; install.packages('reshape2')
+&gt; library(reshape2)</pre>
+<pre>#melt 
+&gt; mt &lt;- melt(thisdata, id=(c('ID','Names')))
+&gt; mt
+
+<a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/4.2.png"><img class="alignnone size-full wp-image-21875" src="./Do Faster Data Manipulation using These 7 R Packages_files/4.2.png" alt="4.2" width="291" height="169" srcset="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/4.2.png?zoom=2&amp;resize=291%2C169" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/4.2.png?resize=291%2C169" scale="2"></a></pre>
+<p>&nbsp;</p>
+<p><strong>cast</strong> : This function converts data from long format to wide format. It starts with melted data and reshapes into long format. It’s just the reverse of <em>melt&nbsp;</em>function. It has two functions namely, <em>dcast</em> and <em>acast</em>. dcast returns a data frame as output. acast returns a vector/matrix/array as the output. Let’s understand it using the code below.</p>
+<pre>#cast
+&gt; mcast &lt;- dcast(mt, DateofBirth + Subject ~ variable)
+&gt; mcast</pre>
+<p><a href="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/4.3.png"><img class="alignnone size-full wp-image-21876" src="./Do Faster Data Manipulation using These 7 R Packages_files/4.3.png" alt="4.3" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/4.3.png?w=370 370w, http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/4.3.png?resize=300%2C76 300w" sizes="(max-width: 370px) 100vw, 370px" width="370" height="94" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/4.3.png?resize=370%2C94" scale="2"></a></p>
+<p><strong>Note:</strong> While doing research work, I found this image which aptly describes reshape package.</p>
+<p><a href="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/reshaping-data-using-melt-and-cast.png"><img class="alignnone size-full wp-image-21828" src="./Do Faster Data Manipulation using These 7 R Packages_files/reshaping-data-using-melt-and-cast.png" alt="reshaping-data-using-melt-and-cast" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/reshaping-data-using-melt-and-cast.png?w=825 825w, http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/reshaping-data-using-melt-and-cast.png?resize=300%2C185 300w" sizes="(max-width: 825px) 100vw, 825px" width="750" height="464" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/reshaping-data-using-melt-and-cast.png?resize=825%2C510" scale="2"></a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; source: <a href="http://i2.wp.com/www.r-statistics.com/wp-content/uploads/2012/01/reshaping-data-using-melt-and-cast.png?resize=825%2C510" target="_blank" rel="nofollow">r-statistics</a></p>
+<p>&nbsp;</p>
+<h2>readr Package</h2>
+<p>As the name suggests, ‘readr’ helps in reading various forms of data into R. With 10x faster speed. Here, characters are never converted to factors(so no more stringAsFactors = FALSE). This package can replace the traditional read.csv() and read.table() base R functions. It helps in reading the following data:</p>
+<ul>
+<li>Delimited files with<code>read_delim()</code>, <code>read_csv()</code>, <code>read_tsv()</code>, and<code>read_csv2()</code>.</li>
+<li>Fixed width files with <code>read_fwf()</code>, and <code>read_table()</code>.</li>
+<li>Web log files with <code>read_log()</code></li>
+</ul>
+<p>If the data loading time is more than 5 seconds, this function will show you a progress bar too. You can suppress the progress bar by marking it as FALSE. Let’s look at the code below:</p>
+<pre>&gt; install.packages('readr')
+&gt; library(readr)</pre>
+<pre>&gt; read_csv('test.csv',col_names = TRUE)</pre>
+<p>You can also specify the data type of every column loaded in data using the code below:</p>
+<pre>&gt; read_csv("iris.csv", col_types = list(
+      Sepal.Length = col_double(),
+      Sepal.Width = col_double(),
+      Petal.Length = col_double(),
+      Petal.Width = col_double(),
+      Species = col_factor(c("setosa", "versicolor", "virginica"))
+))</pre>
+<p>However, if you choose to omit unimportant columns, it will take care of it automatically. So, the code above can also be re-written as:</p>
+<pre>&gt; read_csv("iris.csv", col_types = list(
+           Species = col_factor(c("setosa", "versicolor", "virginica"))
+)</pre>
+<p>P.S – readr has many helper functions. So, next when you write a csv file, use write_csv instead. It’s a lot faster than write.csv.</p>
+<p>&nbsp;</p>
+<h2>tidyr Package</h2>
+<p style="text-align: justify;">This package can make your data look ‘tidy’. It has 4 major functions to accomplish this task. Needless to say, if you find yourself stuck in data exploration phase, you can use them anytime (along with dplyr). This duo makes a formidable team. They are easy to learn, code and implement. These 4 functions are:</p>
+<ul>
+<li style="text-align: justify;">gather() – it ‘gathers’ multiple columns. Then, it converts them into key:value pairs. This function will transform wide from of data to long form. You can use it as in alternative to ‘melt’ in reshape package.</li>
+<li style="text-align: justify;">spread() – It does reverse of gather. It takes a key:value pair and converts it into separate columns.</li>
+<li>separate() – It splits a column into multiple columns.</li>
+<li>unite() – It does reverse of separate. It unites multiple columns into single column</li>
+</ul>
+<p>Let’s understand it closely using the code below:</p>
+<pre>#load package
+&gt; library(tidyr)</pre>
+<pre>#create a dummy data set
+&gt; names &lt;- c('A','B','C','D','E','A','B')
+&gt; weight &lt;- c(55,49,76,71,65,44,34)
+&gt; age &lt;- c(21,20,25,29,33,32,38)
+&gt; Class &lt;- c('Maths','Science','Social','Physics','Biology','Economics','Accounts')</pre>
+<pre>#create data frame
+&gt; tdata &lt;- data.frame(names, age, weight, Class)
+&gt; tdata
+
+<a href="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.1.png"><img class="alignnone size-full wp-image-21877" src="./Do Faster Data Manipulation using These 7 R Packages_files/5.1.png" alt="5.1" width="232" height="128" srcset="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.1.png?zoom=2&amp;resize=232%2C128" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.1.png?resize=232%2C128" scale="2"></a>
+
+#using gather function
+&gt; long_t &lt;- tdata %&gt;% gather(Key, Value, weight:Class)
+&gt; long_t
+
+<a href="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.2.png"><img class="alignnone size-full wp-image-21878" src="./Do Faster Data Manipulation using These 7 R Packages_files/5.2.png" alt="5.2" width="242" height="228" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.2.png?zoom=2&amp;resize=242%2C228" src-orig="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.2.png?resize=242%2C228" scale="2"></a>
+</pre>
+<p>Separate function comes best in use when we are provided a date time variable in the data set. Since, the column contains multiple information, hence it makes sense to split it and use those values individually. Using the code below, I have separated a column into date, month and year.</p>
+<pre>#create a data set
+&gt; Humidity &lt;- c(37.79, 42.34, 52.16, 44.57, 43.83, 44.59)
+&gt; Rain &lt;- c(0.971360441, 1.10969716, 1.064475853, 0.953183435, 0.98878849, 0.939676146)
+&gt; Time &lt;- c("27/01/2015 15:44","23/02/2015 23:24", "31/03/2015 19:15", "20/01/2015 20:52", "23/02/2015 07:46", "31/01/2015 01:55")
+
+#build a data frame
+&gt; d_set &lt;- data.frame(Humidity, Rain, Time)
+
+#using separate function we can separate date, month, year
+&gt; separate_d &lt;- d_set %&gt;% separate(Time, c('Date', 'Month','Year'))
+&gt; separate_d
+
+<a href="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.3.png"><img class="alignnone size-full wp-image-21879" src="./Do Faster Data Manipulation using These 7 R Packages_files/5.3.png" alt="5.3" srcset="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.3.png?w=301 301w, http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.3.png?resize=300%2C108 300w" sizes="(max-width: 301px) 100vw, 301px" width="301" height="108" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.3.png?resize=301%2C108" scale="2"></a>
+
+#using unite function - reverse of separate
+&gt; unite_d &lt;- separate_d%&gt;% unite(Time, c(Date, Month, Year), sep = "/")
+&gt; unite_d
+
+<a href="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.4.png"><img class="alignnone size-full wp-image-21880" src="./Do Faster Data Manipulation using These 7 R Packages_files/5.4.png" alt="5.4" width="257" height="108" srcset="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.4.png?zoom=2&amp;resize=257%2C108" src-orig="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.4.png?resize=257%2C108" scale="2"></a>
+
+#using spread function - reverse of gather
+&gt; wide_t &lt;- long_t %&gt;% spread(Key, Value)
+&gt; wide_t
+</pre>
+<p><a href="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.5.png"><img class="alignnone size-full wp-image-21881" src="./Do Faster Data Manipulation using These 7 R Packages_files/5.5.png" alt="5.5" width="234" height="121" srcset="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.5.png?zoom=2&amp;resize=234%2C121" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.5.png?resize=234%2C121" scale="2"></a></p>
+<p>&nbsp;</p>
+<h2>Lubridate Package</h2>
+<p style="text-align: justify;">Lubridate package reduces the pain of working of data time variable in R. The inbuilt function of this package offers a nice way to make easy&nbsp;parsing in dates and times. This packages is frequently used with data comprising of timely data. Here I have covered three basic tasks accomplished using Lubridate.</p>
+<p style="text-align: justify;">This includes update function, duration function and date extraction. As a beginner, knowing these 3 functions would give you good enough expertise to deal with time variables. Though, R has inbuilt functions for handling dates, but this is much faster. Let’s understand it using the code below:</p>
+<pre>&gt; install.packages('lubridate')
+&gt; library(lubridate)</pre>
+<pre>#current date and time
+&gt; now()
+[1] "2015-12-11 13:23:48 IST"</pre>
+<pre>#assigning current date and time to variable n_time
+&gt; n_time &lt;- now()</pre>
+<pre>#using update function
+&gt; n_update &lt;- update(n_time, year = 2013, month = 10)
+&gt; n_update
+[1] "2013-10-11 13:24:28 IST"</pre>
+<pre>#add days, months, year, seconds
+&gt; d_time &lt;- now()
+&gt; d_time + ddays(1)
+[1] "2015-12-12 13:24:54 IST"
+&gt; d_time + dweeks(2)
+[1] "2015-12-12 13:24:54 IST"
+
+&gt; d_time + dyears(3)
+[1] "2018-12-10 13:24:54 IST"
+
+&gt; d_time + dhours(2)
+[1] "2015-12-11 15:24:54 IST"
+
+&gt; d_time + dminutes(50)
+[1] "2015-12-11 14:14:54 IST"
+
+&gt; d_time + dseconds(60)
+[1] "2015-12-11 13:25:54 IST"</pre>
+<pre>#extract date,time</pre>
+<pre>&gt; n_time$hour &lt;- hour(now())
+&gt; n_time$minute &lt;- minute(now())
+&gt; n_time$second &lt;- second(now())
+&gt; n_time$month &lt;- month(now())
+&gt; n_time$year &lt;- year(now())</pre>
+<pre>#check the extracted dates in separate columns
+&gt; new_data &lt;- data.frame(n_time$hour, n_time$minute, n_time$second, n_time$month, n_time$year)
+&gt; new_data
+<a href="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.6.png"><img class="alignnone size-full wp-image-21882" src="./Do Faster Data Manipulation using These 7 R Packages_files/5.6.png" alt="5.6" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.6.png?w=523 523w, http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.6.png?resize=300%2C18 300w" sizes="(max-width: 523px) 100vw, 523px" width="523" height="31" src-orig="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/12/5.6.png?resize=523%2C31" scale="2"></a></pre>
+<p style="text-align: justify;"><strong>Note:</strong> The best use of these packages is not in isolation but in conjunction. You could easily use this package with dplyr where you can easily select a data variable and extract the useful data from it using the chain command.</p>
+<p>&nbsp;</p>
+<h2>End Notes</h2>
+<p style="text-align: justify;">These packages would not only enhance your data manipulation experience, but also give you reasons to explore R in depth. Now we have seen, these packages make coding in R easier. You no longer need to write long codes. Instead write short codes and do more.</p>
+<p style="text-align: justify;">Every package has multi tasking abilities. Hence, I would suggest you to get hold of important function which can be used frequently. And, once you get familiar with them, you can dig deeper. I did this mistake initially. I tried at exploring all the features in ggplot2 and ended up in a confusion. I’d suggest you to practice these codes as you read. This would help you build confidence on using these packages.</p>
+<p style="text-align: justify;">In this article, I’ve explained the use of 7 R packages which can make data exploration easier and faster. R known for its awesome statistical functions, with newly updated packages makes a favorite tool of data scientists too.</p>
+<h3 style="text-align: justify;"><span style="line-height: 1.5;">If you like what you just read &amp; want to continue your analytics learning,&nbsp;</span><a style="line-height: 1.5;" href="http://feedburner.google.com/fb/a/mailverify?uri=analyticsvidhya" target="_blank">subscribe to our emails</a><span style="line-height: 1.5;">,&nbsp;</span><a style="line-height: 1.5;" href="http://twitter.com/analyticsvidhya" target="_blank">follow us on twitter</a><span style="line-height: 1.5;">&nbsp;or like our&nbsp;</span><a style="line-height: 1.5;" href="http://facebook.com/analyticsvidhya" target="_blank">facebook&nbsp;page</a><span style="line-height: 1.5;">.</span></h3>
+<div style="font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both"></div><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-linkedin"><a rel="nofollow" data-shared="sharing-linkedin-21820" class="share-linkedin sd-button share-icon no-text" href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/?share=linkedin" target="_blank" title="Click to share on LinkedIn"><span></span><span class="sharing-screen-reader-text">Click to share on LinkedIn (Opens in new window)</span></a></li><li class="share-facebook"><a rel="nofollow" data-shared="sharing-facebook-21820" class="share-facebook sd-button share-icon no-text" href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/?share=facebook" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-google-plus-1"><a rel="nofollow" data-shared="sharing-google-21820" class="share-google-plus-1 sd-button share-icon no-text" href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/?share=google-plus-1" target="_blank" title="Click to share on Google+"><span></span><span class="sharing-screen-reader-text">Click to share on Google+ (Opens in new window)</span></a></li><li class="share-twitter"><a rel="nofollow" data-shared="sharing-twitter-21820" class="share-twitter sd-button share-icon no-text" href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/?share=twitter" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-pocket"><a rel="nofollow" data-shared="" class="share-pocket sd-button share-icon no-text" href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/?share=pocket" target="_blank" title="Click to share on Pocket"><span></span><span class="sharing-screen-reader-text">Click to share on Pocket (Opens in new window)</span></a></li><li class="share-reddit"><a rel="nofollow" data-shared="" class="share-reddit sd-button share-icon no-text" href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/?share=reddit" target="_blank" title="Click to share on Reddit"><span></span><span class="sharing-screen-reader-text">Click to share on Reddit (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div>
+<div id="jp-relatedposts" class="jp-relatedposts" style="display: block;">
+<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+<div class="jp-relatedposts-items jp-relatedposts-items-visual"><div class="jp-relatedposts-post jp-relatedposts-post0 jp-relatedposts-post-thumbs" data-post-id="25062" data-post-format="false"><a class="jp-relatedposts-post-a" href="http://www.analyticsvidhya.com/blog/2016/05/h2o-data-table-build-models-large-data-sets/" title="Use H2O and data.table to build models on large data sets in R
+
+Introduction Last week, I wrote an introductory article on the package data.table. It was intended to provide you a head start and become familiar with its unique and short syntax. The next obvious step is to focus on modeling, which we will do in this post today. With data.table, you no…" rel="nofollow" data-origin="21820" data-position="0"><img class="jp-relatedposts-post-img" src="./Do Faster Data Manipulation using These 7 R Packages_files/pexels-photo-min.jpg" width="234" alt="Use H2O and data.table to build models on large data sets in R" height="134" srcset="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2016/05/pexels-photo-min.jpg?zoom=2&amp;fit=1200%2C800&amp;resize=234%2C134" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2016/05/pexels-photo-min.jpg?fit=1200%2C800&amp;resize=350%2C200" scale="2"></a><h4 class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="http://www.analyticsvidhya.com/blog/2016/05/h2o-data-table-build-models-large-data-sets/" title="Use H2O and data.table to build models on large data sets in R
+
+Introduction Last week, I wrote an introductory article on the package data.table. It was intended to provide you a head start and become familiar with its unique and short syntax. The next obvious step is to focus on modeling, which we will do in this post today. With data.table, you no…" rel="nofollow" data-origin="21820" data-position="0">Use H2O and data.table to build models on large data sets in R</a></h4><p class="jp-relatedposts-post-excerpt">Introduction Last week, I wrote an introductory article&nbsp;on the package data.table. It was intended to provide you a head start and become familiar with its unique and short syntax. The next obvious step is to focus on modeling, which we will do in this post today. With data.table, you no…</p><p class="jp-relatedposts-post-date">May 12, 2016</p><p class="jp-relatedposts-post-context">In "Machine Learning"</p></div><div class="jp-relatedposts-post jp-relatedposts-post1 jp-relatedposts-post-thumbs" data-post-id="23388" data-post-format="false"><a class="jp-relatedposts-post-a" href="http://www.analyticsvidhya.com/blog/2016/02/complete-tutorial-learn-data-science-scratch/" title="A Complete Tutorial to learn Data Science in R from Scratch
+
+Introduction R is a powerful language used widely for data analysis and statistical computing. It was developed in early 90s. Since then, endless efforts have been made to improve R&#39;s user interface. The journey of R language from a rudimentary text editor to interactive R Studio and more recently Jupyter Notebooks has…" rel="nofollow" data-origin="21820" data-position="1"><img class="jp-relatedposts-post-img" src="./Do Faster Data Manipulation using These 7 R Packages_files/graphics-1.jpg" width="234" alt="A Complete Tutorial to learn Data Science in R from Scratch" height="134" srcset="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2016/02/graphics-1.jpg?zoom=2&amp;fit=500%2C280&amp;resize=234%2C134" src-orig="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2016/02/graphics-1.jpg?fit=500%2C280&amp;resize=350%2C200" scale="2"></a><h4 class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="http://www.analyticsvidhya.com/blog/2016/02/complete-tutorial-learn-data-science-scratch/" title="A Complete Tutorial to learn Data Science in R from Scratch
+
+Introduction R is a powerful language used widely for data analysis and statistical computing. It was developed in early 90s. Since then, endless efforts have been made to improve R&#39;s user interface. The journey of R language from a rudimentary text editor to interactive R Studio and more recently Jupyter Notebooks has…" rel="nofollow" data-origin="21820" data-position="1">A Complete Tutorial to learn Data Science in R from Scratch</a></h4><p class="jp-relatedposts-post-excerpt">Introduction R is a powerful language used widely for data analysis and statistical computing. It was developed in early 90s. Since then, endless efforts have been made to improve R's user interface. The journey of R language from a rudimentary text editor to interactive&nbsp;R Studio and more recently&nbsp;Jupyter Notebooks has…</p><p class="jp-relatedposts-post-date">February 28, 2016</p><p class="jp-relatedposts-post-context">In "Business Analytics"</p></div><div class="jp-relatedposts-post jp-relatedposts-post2 jp-relatedposts-post-thumbs" data-post-id="20557" data-post-format="false"><a class="jp-relatedposts-post-a" href="http://www.analyticsvidhya.com/blog/2015/10/cheatsheet-11-steps-data-exploration-with-codes/" title="Cheatsheet - 11 Steps for Data Exploration in R (with codes)
+
+Introduction If you wish to build an impeccable predictive model, trust me, neither any programming language nor any machine learning algorithm can award it to you unless you perform data exploration. Just like a baby learns to walk before running, every data scientist should learn to explore data prior to…" rel="nofollow" data-origin="21820" data-position="2"><img class="jp-relatedposts-post-img" src="./Do Faster Data Manipulation using These 7 R Packages_files/capture.jpg" width="234" alt="Cheatsheet - 11 Steps for Data Exploration in R (with codes)" height="134" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/10/capture.jpg?zoom=2&amp;fit=825%2C474&amp;resize=234%2C134" src-orig="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2015/10/capture.jpg?fit=825%2C474&amp;resize=350%2C200" scale="2"></a><h4 class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="http://www.analyticsvidhya.com/blog/2015/10/cheatsheet-11-steps-data-exploration-with-codes/" title="Cheatsheet - 11 Steps for Data Exploration in R (with codes)
+
+Introduction If you wish to build an impeccable predictive model, trust me, neither any programming language nor any machine learning algorithm can award it to you unless you perform data exploration. Just like a baby learns to walk before running, every data scientist should learn to explore data prior to…" rel="nofollow" data-origin="21820" data-position="2">Cheatsheet - 11 Steps for Data Exploration in R (with codes)</a></h4><p class="jp-relatedposts-post-excerpt">Introduction If you wish to build an impeccable predictive model, trust me, neither any programming language nor any machine learning algorithm can award it to you unless you perform data exploration. Just like a baby learns to walk before running, every data scientist should learn to explore data prior to…</p><p class="jp-relatedposts-post-date">October 6, 2015</p><p class="jp-relatedposts-post-context">In "Business Analytics"</p></div></div></div>
+</div>
+<footer class="clearfix both">
+<div class="meta-tags clearfix">
+Tags: <a href="http://www.analyticsvidhya.com/blog/tag/data-exploration/" rel="tag">data exploration</a>, <a href="http://www.analyticsvidhya.com/blog/tag/data-manipulation/" rel="tag">data manipulation</a>, <a href="http://www.analyticsvidhya.com/blog/tag/data-table/" rel="tag">data.table</a>, <a href="http://www.analyticsvidhya.com/blog/tag/dplyr/" rel="tag">dplyr</a>, <a href="http://www.analyticsvidhya.com/blog/tag/ggplot/" rel="tag">ggplot</a>, <a href="http://www.analyticsvidhya.com/blog/tag/lubridate/" rel="tag">lubridate</a>, <a href="http://www.analyticsvidhya.com/blog/tag/r-packages/" rel="tag">r packages</a>, <a href="http://www.analyticsvidhya.com/blog/tag/reshape/" rel="tag">reshape</a>, <a href="http://www.analyticsvidhya.com/blog/tag/reshape2/" rel="tag">reshape2</a>, <a href="http://www.analyticsvidhya.com/blog/tag/tidyr/" rel="tag">tidyr</a> </div>
+<div class="one-divider"></div>
+<div class="next-prev">
+<a class="next" href="http://www.analyticsvidhya.com/blog/2015/12/enterprise-bi-architect-bangalore-gurgaon-15-years-experience/" rel="next"><i class="icon-right-open-big"></i><div class="np-caption">Next Article</div><div class="np-title">Enterprise BI Architect – Bangalore / Gurgaon (15+ years of experience)</div></a>
+<a class="prev" href="http://www.analyticsvidhya.com/blog/2015/12/10-tips-tricks-data-visualization-qlikview/" rel="prev"><i class="icon-left-open-big"></i><div class="np-caption">Previous Article</div><div class="np-title">10 Ultimate Tips and Tricks on Data Visualization in QlikView</div></a>
+</div>
+<div class="meta-author">
+<div class="author-thumb">
+<a itemprop="author" href="http://www.analyticsvidhya.com/blog/author/manish-saraswat/">
+<img alt="" src="./Do Faster Data Manipulation using These 7 R Packages_files/9b611a798b408d0b3ab2bbc66479b624(1)" srcset="http://0.gravatar.com/avatar/9b611a798b408d0b3ab2bbc66479b624?s=400&amp;d=mm&amp;r=g 2x" class="avatar avatar-200 photo grav-hashed" height="200" width="200" originals="200" scale="2" id="grav-9b611a798b408d0b3ab2bbc66479b624-1"> </a>
+</div>
+<div class="author-info">
+<div class="np-caption">Author</div>
+<div class="author-name">
+<a itemprop="author" href="http://www.analyticsvidhya.com/blog/author/manish-saraswat/">Manish Saraswat</a>
+</div>
+<div class="author-desc">
+<span class="fn">I believe education can change this world. Knowledge is the most powerful asset one can build. It builds up like compound interest.
+I am passionate about helping people. I care about animals, unprivileged people, sharing knowledge, health and books.
+R, Data Science and Machine Learning keep me busy. Try. Bleed. Succeed.</span>
+</div>
+<ul class="author-links">
+<li><a target="_blank" href="https://twitter.com/Manish_Saraswt"><i class="icon-twitter"></i></a></li><li><a target="_blank" href="https://in.linkedin.com/in/saraswatmanish"><i class="icon-linkedin"></i></a></li> </ul>
+</div>
+</div>
+</footer>
+</article>  
+ 
+ 
+ 
+<div class="row">
+<div class="col-sm-12">
+<div class="block-cap" id="comments">
+<h3 id="comment">10 Comments</h3>
+</div>
+</div>
+</div>
+<div class="navigation">
+<div class="alignleft"></div>
+<div class="alignright"></div>
+</div>
+<ul class="comment-list">
+<li class="comment even thread-even depth-1" id="comment-101726">
+<div id="div-comment-101726" class="comment-body">
+<div class="comment-author vcard">
+<img alt="" src="./Do Faster Data Manipulation using These 7 R Packages_files/507fe1a177b3d7ae2b67ad025b216340" srcset="http://2.gravatar.com/avatar/507fe1a177b3d7ae2b67ad025b216340?s=200&amp;d=mm&amp;r=g 2x" class="avatar avatar-100 photo grav-hashed grav-hijack" height="100" width="100" originals="100" scale="2" id="grav-507fe1a177b3d7ae2b67ad025b216340-0"> <cite class="fn">Mike S</cite> <span class="says">says:</span> </div>
+<div class="comment-meta commentmetadata"><a href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/#comment-101726">
+December 11, 2015 at 6:49 am</a> </div>
+<p>Great post, thanks.</p>
+<div class="reply"><a rel="nofollow" class="comment-reply-link" href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/?replytocom=101726#respond" onclick="return addComment.moveForm( &quot;div-comment-101726&quot;, &quot;101726&quot;, &quot;respond&quot;, &quot;21820&quot; )" aria-label="Reply to Mike S">Reply</a></div>
+</div>
+</li> 
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-101729">
+<div id="div-comment-101729" class="comment-body">
+<div class="comment-author vcard">
+<img alt="" src="./Do Faster Data Manipulation using These 7 R Packages_files/d6f45d66dc8d7361f1a31a4a20b6948c" srcset="http://1.gravatar.com/avatar/d6f45d66dc8d7361f1a31a4a20b6948c?s=200&amp;d=mm&amp;r=g 2x" class="avatar avatar-100 photo grav-hashed grav-hijack" height="100" width="100" originals="100" scale="2" id="grav-d6f45d66dc8d7361f1a31a4a20b6948c-0"> <cite class="fn">Petros Koulouris</cite> <span class="says">says:</span> </div>
+<div class="comment-meta commentmetadata"><a href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/#comment-101729">
+December 11, 2015 at 7:15 am</a> </div>
+<p>Hi,</p>
+<p>I have a dataframe with 7.5M records and I need to compare each one against all the others. I have tried data.table but even that seems to to be too slow. What package would you suggest to do Cartesian joins? Unfortunately my RDB spools out and I am trying this in R.</p>
+<div class="reply"><a rel="nofollow" class="comment-reply-link" href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/?replytocom=101729#respond" onclick="return addComment.moveForm( &quot;div-comment-101729&quot;, &quot;101729&quot;, &quot;respond&quot;, &quot;21820&quot; )" aria-label="Reply to Petros Koulouris">Reply</a></div>
+</div>
+</li> 
+<li class="comment byuser comment-author-ved even thread-even depth-1" id="comment-101750">
+<div id="div-comment-101750" class="comment-body">
+<div class="comment-author vcard">
+<img alt="" src="./Do Faster Data Manipulation using These 7 R Packages_files/87be1eddae7e3780b2bdd490d684cd76" srcset="http://2.gravatar.com/avatar/87be1eddae7e3780b2bdd490d684cd76?s=200&amp;d=mm&amp;r=g 2x" class="avatar avatar-100 photo grav-hashed grav-hijack" height="100" width="100" originals="100" scale="2" id="grav-87be1eddae7e3780b2bdd490d684cd76-0"> <cite class="fn">ved</cite> <span class="says">says:</span> </div>
+<div class="comment-meta commentmetadata"><a href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/#comment-101750">
+December 11, 2015 at 9:50 am</a> </div>
+<p>awesome tutorial..</p>
+<div class="reply"><a rel="nofollow" class="comment-reply-link" href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/?replytocom=101750#respond" onclick="return addComment.moveForm( &quot;div-comment-101750&quot;, &quot;101750&quot;, &quot;respond&quot;, &quot;21820&quot; )" aria-label="Reply to ved">Reply</a></div>
+</div>
+</li> 
+<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-101795">
+<div id="div-comment-101795" class="comment-body">
+<div class="comment-author vcard">
+<img alt="" src="./Do Faster Data Manipulation using These 7 R Packages_files/15f721faa5081c23cadc62f8d8688085" srcset="http://1.gravatar.com/avatar/15f721faa5081c23cadc62f8d8688085?s=200&amp;d=mm&amp;r=g 2x" class="avatar avatar-100 photo grav-hashed grav-hijack" height="100" width="100" originals="100" scale="2" id="grav-15f721faa5081c23cadc62f8d8688085-0"> <cite class="fn">Rajesh</cite> <span class="says">says:</span> </div>
+<div class="comment-meta commentmetadata"><a href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/#comment-101795">
+December 12, 2015 at 5:46 am</a> </div>
+<p>I have installed some packages and already had some.. Awesome info !!! great work. ANy tutorial on R studio will be also great…</p>
+<div class="reply"><a rel="nofollow" class="comment-reply-link" href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/?replytocom=101795#respond" onclick="return addComment.moveForm( &quot;div-comment-101795&quot;, &quot;101795&quot;, &quot;respond&quot;, &quot;21820&quot; )" aria-label="Reply to Rajesh">Reply</a></div>
+</div>
+</li> 
+<li class="comment even thread-even depth-1" id="comment-101894">
+<div id="div-comment-101894" class="comment-body">
+<div class="comment-author vcard">
+<img alt="" src="./Do Faster Data Manipulation using These 7 R Packages_files/99c5752cdf6a9249e15613829c4c0665" srcset="http://0.gravatar.com/avatar/99c5752cdf6a9249e15613829c4c0665?s=200&amp;d=mm&amp;r=g 2x" class="avatar avatar-100 photo grav-hashed grav-hijack" height="100" width="100" originals="100" scale="2" id="grav-99c5752cdf6a9249e15613829c4c0665-0"> <cite class="fn">Ramesh</cite> <span class="says">says:</span> </div>
+<div class="comment-meta commentmetadata"><a href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/#comment-101894">
+December 14, 2015 at 9:36 am</a> </div>
+<p>Very useful packages and examples. Great work. Thanks</p>
+<div class="reply"><a rel="nofollow" class="comment-reply-link" href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/?replytocom=101894#respond" onclick="return addComment.moveForm( &quot;div-comment-101894&quot;, &quot;101894&quot;, &quot;respond&quot;, &quot;21820&quot; )" aria-label="Reply to Ramesh">Reply</a></div>
+</div>
+</li> 
+<li class="comment odd alt thread-odd thread-alt depth-1 parent" id="comment-102309">
+<div id="div-comment-102309" class="comment-body">
+<div class="comment-author vcard">
+<img alt="" src="./Do Faster Data Manipulation using These 7 R Packages_files/63d75c3585584e40a13cd53a91ca2981" srcset="http://0.gravatar.com/avatar/63d75c3585584e40a13cd53a91ca2981?s=200&amp;d=mm&amp;r=g 2x" class="avatar avatar-100 photo grav-hashed grav-hijack" height="100" width="100" originals="100" scale="2" id="grav-63d75c3585584e40a13cd53a91ca2981-0"> <cite class="fn">Jerry Tseng</cite> <span class="says">says:</span> </div>
+<div class="comment-meta commentmetadata"><a href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/#comment-102309">
+December 21, 2015 at 9:18 am</a> </div>
+<p>Hi Manish,<br>
+You did an great job to provide us a very useful learning material. I have some comments for your reference.<br>
+a. The version of the data.table package I installed is 1.9.2. As to the data.table sample, the code of mydata[,.(Temp,Month)] doesn’t work, it should be revised as mydata[,list(Temp,Month)]<br>
+b. The package cowplot must be loaded before using the function plot_grid(). You’ve mentioned the cowplot in the article, but it can be added to sample code, it will be better for new learners.<br>
+Thanks for your sharing again, Jerry</p>
+<div class="reply"><a rel="nofollow" class="comment-reply-link" href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/?replytocom=102309#respond" onclick="return addComment.moveForm( &quot;div-comment-102309&quot;, &quot;102309&quot;, &quot;respond&quot;, &quot;21820&quot; )" aria-label="Reply to Jerry Tseng">Reply</a></div>
+</div>
+<ul class="children">
+<li class="comment byuser comment-author-manish-saraswat bypostauthor even depth-2" id="comment-102329">
+<div id="div-comment-102329" class="comment-body">
+<div class="comment-author vcard">
+<img alt="" src="./Do Faster Data Manipulation using These 7 R Packages_files/9b611a798b408d0b3ab2bbc66479b624(2)" srcset="http://0.gravatar.com/avatar/9b611a798b408d0b3ab2bbc66479b624?s=200&amp;d=mm&amp;r=g 2x" class="avatar avatar-100 photo grav-hashed grav-hijack" height="100" width="100" originals="100" scale="2" id="grav-9b611a798b408d0b3ab2bbc66479b624-2"> <cite class="fn">Manish Saraswat</cite> <span class="says">says:</span> </div>
+<div class="comment-meta commentmetadata"><a href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/#comment-102329">
+December 21, 2015 at 4:04 pm</a> </div>
+<p>Thank you so much Jerry for sharing this knowledge.</p>
+<div class="reply"><a rel="nofollow" class="comment-reply-link" href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/?replytocom=102329#respond" onclick="return addComment.moveForm( &quot;div-comment-102329&quot;, &quot;102329&quot;, &quot;respond&quot;, &quot;21820&quot; )" aria-label="Reply to Manish Saraswat">Reply</a></div>
+</div>
+</li> 
+</ul> 
+</li> 
+<li class="comment odd alt thread-even depth-1" id="comment-102630">
+<div id="div-comment-102630" class="comment-body">
+<div class="comment-author vcard">
+<img alt="" src="./Do Faster Data Manipulation using These 7 R Packages_files/b44069889fc1ad5c82befe34d880a4fa" srcset="http://2.gravatar.com/avatar/b44069889fc1ad5c82befe34d880a4fa?s=200&amp;d=mm&amp;r=g 2x" class="avatar avatar-100 photo grav-hashed grav-hijack" height="100" width="100" originals="100" scale="2" id="grav-b44069889fc1ad5c82befe34d880a4fa-0"> <cite class="fn">Himansu Sahoo</cite> <span class="says">says:</span> </div>
+<div class="comment-meta commentmetadata"><a href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/#comment-102630">
+December 27, 2015 at 6:39 am</a> </div>
+<p>Thanks for the post. Here is a cheatsheet by R Studio on Data Wrangling with dplyr and tidyr.<br>
+<a href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf" rel="nofollow">http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</a></p>
+<div class="reply"><a rel="nofollow" class="comment-reply-link" href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/?replytocom=102630#respond" onclick="return addComment.moveForm( &quot;div-comment-102630&quot;, &quot;102630&quot;, &quot;respond&quot;, &quot;21820&quot; )" aria-label="Reply to Himansu Sahoo">Reply</a></div>
+</div>
+</li> 
+<li class="comment even thread-odd thread-alt depth-1 parent" id="comment-107319">
+<div id="div-comment-107319" class="comment-body">
+<div class="comment-author vcard">
+<img alt="" src="./Do Faster Data Manipulation using These 7 R Packages_files/310cae5080ca9e14cc1ecee1a829e400" srcset="http://0.gravatar.com/avatar/310cae5080ca9e14cc1ecee1a829e400?s=200&amp;d=mm&amp;r=g 2x" class="avatar avatar-100 photo grav-hashed grav-hijack" height="100" width="100" originals="100" scale="2" id="grav-310cae5080ca9e14cc1ecee1a829e400-0"> <cite class="fn"><a href="http://ranalytics.vn/" rel="external nofollow" class="url">Anh Hoang Duc</a></cite> <span class="says">says:</span> </div>
+<div class="comment-meta commentmetadata"><a href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/#comment-107319">
+March 14, 2016 at 6:56 am</a> </div>
+<p>Great posts! It covers most of frequent normal data manipulation problems in R!</p>
+<div class="reply"><a rel="nofollow" class="comment-reply-link" href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/?replytocom=107319#respond" onclick="return addComment.moveForm( &quot;div-comment-107319&quot;, &quot;107319&quot;, &quot;respond&quot;, &quot;21820&quot; )" aria-label="Reply to Anh Hoang Duc">Reply</a></div>
+</div>
+<ul class="children">
+<li class="comment byuser comment-author-manish-saraswat bypostauthor odd alt depth-2" id="comment-107846">
+<div id="div-comment-107846" class="comment-body">
+<div class="comment-author vcard">
+<img alt="" src="./Do Faster Data Manipulation using These 7 R Packages_files/9b611a798b408d0b3ab2bbc66479b624(2)" srcset="http://0.gravatar.com/avatar/9b611a798b408d0b3ab2bbc66479b624?s=200&amp;d=mm&amp;r=g 2x" class="avatar avatar-100 photo grav-hashed grav-hijack" height="100" width="100" originals="100" scale="2" id="grav-9b611a798b408d0b3ab2bbc66479b624-3"> <cite class="fn">Manish Saraswat</cite> <span class="says">says:</span> </div>
+<div class="comment-meta commentmetadata"><a href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/#comment-107846">
+March 20, 2016 at 12:29 pm</a> </div>
+<p>Thanks Anh Hoang Duc!</p>
+<div class="reply"><a rel="nofollow" class="comment-reply-link" href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/?replytocom=107846#respond" onclick="return addComment.moveForm( &quot;div-comment-107846&quot;, &quot;107846&quot;, &quot;respond&quot;, &quot;21820&quot; )" aria-label="Reply to Manish Saraswat">Reply</a></div>
+</div>
+</li> 
+</ul> 
+</li> 
+</ul>
+<div id="respond" class="comment-respond">
+<h3 id="reply-title" class="comment-reply-title">Leave A Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.analyticsvidhya.com/blog/2015/12/faster-data-manipulation-7-packages/#respond" style="display:none;">Cancel Reply</a></small></h3> <form action="http://www.analyticsvidhya.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+ 
+<style type="text/css">.wp-social-login-connect-with{}.wp-social-login-provider-list{}.wp-social-login-provider-list a{}.wp-social-login-provider-list img{}.wsl_connect_with_provider{}</style>
+<div class="wp-social-login-widget">
+<div class="wp-social-login-connect-with">Connect with:</div>
+<div class="wp-social-login-provider-list">
+<a rel="nofollow" href="http://www.analyticsvidhya.com/wp-login.php?action=wordpress_social_authenticate&amp;mode=login&amp;provider=Facebook&amp;redirect_to=http%3A%2F%2Fwww.analyticsvidhya.com%2Fblog%2F2015%2F12%2Ffaster-data-manipulation-7-packages%2F" title="Connect with Facebook" class="wp-social-login-provider wp-social-login-provider-facebook" data-provider="Facebook">
+<img alt="Facebook" title="Connect with Facebook" src="./Do Faster Data Manipulation using These 7 R Packages_files/facebook.png" scale="0">
+</a>
+</div>
+<div class="wp-social-login-widget-clearing"></div>
+</div>
+ 
+<p class="comment-notes">Your email address will not be published.</p><div class="row"><div class="col-sm-12"><textarea placeholder="Comment" id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></div></div><div class="row"><div class="col-sm-12"><input id="author" name="author" placeholder="Name (required)" type="text" value="" size="30"></div>
+<div class="col-sm-12"><input id="email" name="email" placeholder="Email (required)" type="text" value="" size="30"></div>
+<div class="col-sm-12 col_last"><input id="url" name="url" placeholder="Website" type="text" value="" size="30"></div></div>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Submit Comment"> <input type="hidden" name="comment_post_ID" value="21820" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="f5a6748552"></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p><p style="display: none;"></p> <input type="hidden" id="ak_js" name="ak_js" value="1463608621572"></form>
+</div> 
+</div>
+</div>
+ 
+<div class="col-sm-4">
+<div class="sidebar" style="height: 2243px;">
+<div id="topuserswidget-3" class="widget clearfix TopUsersWidget"><div class="widget-title"><div class="block-cap"><h3>Top AV Users</h3></div></div><table class="top_users"><tbody><tr><th>Rank</th><th colspan="2">Name</th><th>Points</th></tr><tr><td>1</td><td class="top_users_td_image"><img class="top_users_img" src="./Do Faster Data Manipulation using These 7 R Packages_files/photo_2.JPG" scale="0"></td><td class="top_users_name_td"><a class="top_users_name" href="http://datahack.analyticsvidhya.com/user/profile/Nalin">Nalin Pasricha</a></td><td class="top_users_points">4380</td></tr><tr><td>2</td><td class="top_users_td_image"><img class="top_users_img" src="./Do Faster Data Manipulation using These 7 R Packages_files/sudalai.jpg" scale="0"></td><td class="top_users_name_td"><a class="top_users_name" href="http://datahack.analyticsvidhya.com/user/profile/SRK">SRK</a></td><td class="top_users_points">4333</td></tr><tr><td>3</td><td class="top_users_td_image"><img class="top_users_img" src="./Do Faster Data Manipulation using These 7 R Packages_files/11002614_833768730012152_3831862315589871809_n_yoPgxLT.jpg" scale="0"></td><td class="top_users_name_td"><a class="top_users_name" href="http://datahack.analyticsvidhya.com/user/profile/aayushmnit">Aayushmnit</a></td><td class="top_users_points">3882</td></tr><tr><td>4</td><td class="top_users_td_image"><img class="top_users_img" src="./Do Faster Data Manipulation using These 7 R Packages_files/1001108_10201795458557966_723678878_n.jpg" scale="0"></td><td class="top_users_name_td"><a class="top_users_name" href="http://datahack.analyticsvidhya.com/user/profile/binga">binga</a></td><td class="top_users_points">3365</td></tr><tr><td>5</td><td class="top_users_td_image"><img class="top_users_img" src="./Do Faster Data Manipulation using These 7 R Packages_files/RRR.jpg" scale="0"></td><td class="top_users_name_td"><a class="top_users_name" href="http://datahack.analyticsvidhya.com/user/profile/Rohan%20Rao">vopani</a></td><td class="top_users_points">3261</td></tr></tbody></table><div><a class="top_users_more" href="http://datahack.analyticsvidhya.com/users">More Rankings</a></div></div><div id="text-16" class="widget clearfix widget_text"> <div class="textwidget"><script async="" src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+ 
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-5229672700622157" data-ad-slot="1221924026"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+</div><div id="wmp_widget-2" class="widget clearfix widget_wmp_widget"><div class="widget-title"><div class="block-cap"><h3>Popular posts</h3></div></div><ul class="wp-most-popular">
+<li class="post-24941posttype-poststatus-publishformat-standardhas-post-thumbnailcategory-business-analyticscategory-business-intelligencecategory-machine-learningtag-automated-machine-learningtag-bigmltag-data-cleaningtag-datarobottag-google-cloud-prediction-apitag-machine-learningtag-ml-basetag-narrative-sciencetag-paxatatag-rapidminertag-trifactatag-weka">
+<a href="http://www.analyticsvidhya.com/blog/2016/05/19-data-science-tools-for-people-dont-understand-coding/" title="19 Data Science Tools for people who aren’t so good at Programming">
+19 Data Science Tools for people who aren’t so good at Programming
+</a>
+</li>
+<li class="post-21948posttype-poststatus-publishformat-standardhas-post-thumbnailcategory-business-analyticstag-acf-plotstag-arimatag-arima-modelingtag-arma-modelingtag-dickey-fuller-testtag-forecastingtag-time-series">
+<a href="http://www.analyticsvidhya.com/blog/2015/12/complete-tutorial-time-series-modeling/" title="A Complete Tutorial on Time Series Modeling in R">
+A Complete Tutorial on Time Series Modeling in R
+</a>
+</li>
+<li class="post-18770posttype-poststatus-publishformat-standardhas-post-thumbnailcategory-business-analyticscategory-python-2category-rtag-c4-5tag-carttag-decision-treetag-gbmtag-k-meanstag-knntag-linear-regressiontag-logistic-regressiontag-machine-learningtag-naive-bayestag-neural-networktag-random-foresttag-reinforcementtag-supervised-learningtag-unsupervised">
+<a href="http://www.analyticsvidhya.com/blog/2015/08/common-machine-learning-algorithms/" title="Essentials of Machine Learning Algorithms (with Python and R Codes)">
+Essentials of Machine Learning Algorithms (with Python and R Codes)
+</a>
+</li>
+<li class="post-18835posttype-poststatus-publishformat-standardhas-post-thumbnailcategory-business-analyticstag-elasticnet-regressiontag-lasso-regressiontag-linear-regressiontag-logistic-regressiontag-multinomial-logistic-rgressiontag-multiple-regressiontag-ordinal-logistic-regressiontag-polynomial-regressiontag-regressiontag-regularizationtag-ridge-regressiontag-stepwise-regression">
+<a href="http://www.analyticsvidhya.com/blog/2015/08/comprehensive-guide-regression/" title="7 Types of Regression Techniques you should know!">
+7 Types of Regression Techniques you should know!
+</a>
+</li>
+<li class="post-10272posttype-poststatus-publishformat-standardhas-post-thumbnailcategory-analytics-vidhyacategory-business-analyticstag-analytics-programtag-business-analyticstag-great-lakes-institute-of-managementtag-iim-bangaloretag-iim-kolkatatag-iim-lucknowtag-indian-school-of-businesstag-insofetag-praxis-business-school">
+<a href="http://www.analyticsvidhya.com/blog/2014/12/top-analytics-programs-india-2014-2015/" title="Top 5 Analytics Programs in India (2014 – 15)">
+Top 5 Analytics Programs in India (2014 – 15)
+</a>
+</li>
+<li class="post-19875posttype-poststatus-publishformat-standardhas-post-thumbnailcategory-business-analyticscategory-python-2tag-machine-learningtag-naive-bayestag-probabilitytag-python">
+<a href="http://www.analyticsvidhya.com/blog/2015/09/naive-bayes-explained/" title="6 Easy Steps to Learn Naive Bayes Algorithm (with code in Python)">
+6 Easy Steps to Learn Naive Bayes Algorithm (with code in Python)
+</a>
+</li>
+<li class="post-23405posttype-poststatus-publishformat-standardhas-post-thumbnailcategory-machine-learningcategory-python-2category-rtag-books-on-calculustag-books-on-linear-algebratag-books-on-mathematicstag-books-on-probabilitytag-books-on-statisticstag-maths-for-machine-learningtag-tutorials-on-maths-with-data-science">
+<a href="http://www.analyticsvidhya.com/blog/2016/02/free-read-books-statistics-mathematics-data-science/" title="Free Must Read Books on Statistics &amp; Mathematics for Data Science">
+Free Must Read Books on Statistics &amp; Mathematics for Data Science
+</a>
+</li>
+<li class="post-22387posttype-poststatus-publishformat-standardhas-post-thumbnailcategory-machine-learningcategory-pandascategory-python-2tag-applytag-box-plotstag-categorical-variabletag-data-cleaningtag-data-explorationtag-data-framestag-data-miningtag-data-mungingtag-data-structuretag-data-wranglingtag-dictionarytag-distribution-analysistag-installing-pythontag-ipythontag-liststag-logistic-regressiontag-matplotlibtag-meantag-mergetag-numpytag-pandastag-pythontag-python-tutorialtag-scikit-learntag-scipytag-setstag-splittag-stacked-charttag-starting-pythontag-statisticstag-stringstag-tupletag-tuplestag-tutorial">
+<a href="http://www.analyticsvidhya.com/blog/2016/01/complete-tutorial-learn-data-science-python-scratch-2/" title="A Complete Tutorial to Learn Data Science with Python from Scratch">
+A Complete Tutorial to Learn Data Science with Python from Scratch
+</a>
+</li>
+</ul></div><div id="text-17" class="widget clearfix widget_text"> <div class="textwidget"><script async="" src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+ 
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-5229672700622157" data-ad-slot="1221924026"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+</div><div id="text-15" class="widget clearfix widget_text"> <div class="textwidget"><a href="http://imarticus.org/programs/business-analytics-professional/" rel="nofollow" target="_blank">
+<img src="./Do Faster Data Manipulation using These 7 R Packages_files/imarticusanalytics.gif" width="300" height="250" alt="" scale="0"></a>
+</div>
+</div><div id="maha_recent_posts-3" class="widget clearfix widget_recents"><div class="widget-title"><div class="block-cap"><h3>Recent Posts</h3></div></div>
+<div class="post-box-small recent-item clearfix" itemscope="" itemtype="http://schema.org/Article">
+<div class="thumb-wrap zoom-zoom three">
+<a href="http://www.analyticsvidhya.com/blog/2016/05/ase-studies-10x-faster-using-dynamic-programming/" rel="bookmark" title="Solve Interview Case Studies 10x Faster Using Dynamic Programming">
+<img width="83" height="63" itemprop="image" class="entry-thumb zoom-it three" src="./Do Faster Data Manipulation using These 7 R Packages_files/picture.jpg" alt="Solve Interview Case Studies 10x Faster Using Dynamic Programming" title="Solve Interview Case Studies 10x Faster Using Dynamic Programming" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2016/05/picture.jpg?zoom=2&amp;resize=83%2C63" src-orig="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2016/05/picture.jpg?resize=83%2C63" scale="2">
+</a>
+</div>
+<div class="box-small-wrap">
+<h3 itemprop="name" class="entry-title short-bottom">
+<a itemprop="url" href="http://www.analyticsvidhya.com/blog/2016/05/ase-studies-10x-faster-using-dynamic-programming/" rel="bookmark" title="Solve Interview Case Studies 10x Faster Using Dynamic Programming">
+Solve Interview Case Studies 10x Faster Using Dynamic Programming </a>
+</h3>
+<div class="meta-info">
+<span itemprop="author" class="entry-author">Tavish Srivastava</span>
+<span class="coma">,</span>
+<time itemprop="dateCreated" class="entry-date" datetime="2016-05-16T03:59:38+00:00">
+May 16, 2016 </time>
+</div>
+</div>
+</div>
+<div class="post-box-small recent-item clearfix" itemscope="" itemtype="http://schema.org/Article">
+<div class="thumb-wrap zoom-zoom three">
+<a href="http://www.analyticsvidhya.com/blog/2016/05/h2o-data-table-build-models-large-data-sets/" rel="bookmark" title="Use H2O and data.table to build models on large data sets in R">
+<img width="83" height="63" itemprop="image" class="entry-thumb zoom-it three" src="./Do Faster Data Manipulation using These 7 R Packages_files/pexels-photo-min(1).jpg" alt="Use H2O and data.table to build models on large data sets in R" title="Use H2O and data.table to build models on large data sets in R" srcset="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2016/05/pexels-photo-min.jpg?zoom=2&amp;resize=83%2C63" src-orig="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2016/05/pexels-photo-min.jpg?resize=83%2C63" scale="2">
+</a>
+</div>
+<div class="box-small-wrap">
+<h3 itemprop="name" class="entry-title short-bottom">
+<a itemprop="url" href="http://www.analyticsvidhya.com/blog/2016/05/h2o-data-table-build-models-large-data-sets/" rel="bookmark" title="Use H2O and data.table to build models on large data sets in R">
+Use H2O and data.table to build models on large data sets in R </a>
+</h3>
+<div class="meta-info">
+<span itemprop="author" class="entry-author">Manish Saraswat</span>
+<span class="coma">,</span>
+<time itemprop="dateCreated" class="entry-date" datetime="2016-05-12T02:45:04+00:00">
+May 12, 2016 </time>
+</div>
+</div>
+</div>
+<div class="post-box-small recent-item clearfix" itemscope="" itemtype="http://schema.org/Article">
+<div class="thumb-wrap zoom-zoom three">
+<a href="http://www.analyticsvidhya.com/blog/2016/05/winners-approach-solution-seers-accuracy/" rel="bookmark" title="Winners Talk: Top 3 Solutions of The Seer’s Accuracy Competition">
+<img width="83" height="63" itemprop="image" class="entry-thumb zoom-it three" src="./Do Faster Data Manipulation using These 7 R Packages_files/win-win-83x63.jpe" alt="Winners Talk: Top 3 Solutions of The Seer’s Accuracy Competition" title="Winners Talk: Top 3 Solutions of The Seer’s Accuracy Competition" scale="0">
+</a>
+</div>
+<div class="box-small-wrap">
+<h3 itemprop="name" class="entry-title short-bottom">
+<a itemprop="url" href="http://www.analyticsvidhya.com/blog/2016/05/winners-approach-solution-seers-accuracy/" rel="bookmark" title="Winners Talk: Top 3 Solutions of The Seer’s Accuracy Competition">
+Winners Talk: Top 3 Solutions of&nbsp;The Seer’s Accuracy Competition </a>
+</h3>
+<div class="meta-info">
+<span itemprop="author" class="entry-author">Manish Saraswat</span>
+<span class="coma">,</span>
+<time itemprop="dateCreated" class="entry-date" datetime="2016-05-09T02:44:35+00:00">
+May 9, 2016 </time>
+</div>
+</div>
+</div>
+<div class="post-box-small recent-item clearfix" itemscope="" itemtype="http://schema.org/Article">
+<div class="thumb-wrap zoom-zoom three">
+<a href="http://www.analyticsvidhya.com/blog/2016/05/19-data-science-tools-for-people-dont-understand-coding/" rel="bookmark" title="19 Data Science Tools for people who aren’t so good at Programming">
+<img width="83" height="63" itemprop="image" class="entry-thumb zoom-it three" src="./Do Faster Data Manipulation using These 7 R Packages_files/datasciencetools.jpg" alt="19 Data Science Tools for people who aren’t so good at Programming" title="19 Data Science Tools for people who aren’t so good at Programming" srcset="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2016/05/datasciencetools.jpg?zoom=2&amp;resize=83%2C63" src-orig="http://i0.wp.com/www.analyticsvidhya.com/wp-content/uploads/2016/05/datasciencetools.jpg?resize=83%2C63" scale="2">
+</a>
+</div>
+<div class="box-small-wrap">
+<h3 itemprop="name" class="entry-title short-bottom">
+<a itemprop="url" href="http://www.analyticsvidhya.com/blog/2016/05/19-data-science-tools-for-people-dont-understand-coding/" rel="bookmark" title="19 Data Science Tools for people who aren’t so good at Programming">
+19 Data Science Tools for people who aren’t so good at Programming </a>
+</h3>
+<div class="meta-info">
+<span itemprop="author" class="entry-author">Aarshay Jain</span>
+<span class="coma">,</span>
+<time itemprop="dateCreated" class="entry-date" datetime="2016-05-05T04:45:16+00:00">
+May 5, 2016 </time>
+</div>
+</div>
+</div>
+</div><div id="text-19" class="widget clearfix widget_text"> <div class="textwidget"><a href="http://www.edvancer.in/course/cbap?utm_source=AV&amp;utm_medium=AVads&amp;utm_campaign=AVadsnonfc&amp;utm_content=cbapavad" rel="nofollow" target="_blank"><img src="./Do Faster Data Manipulation using These 7 R Packages_files/edvancer-may-2016.gif" alt="" scale="0"></a></div>
+</div><div id="maha_social_subscribe-4" class="widget clearfix social_subscribe"><div class="widget-title"><div class="block-cap"><h3>Get Connected</h3></div></div>
+<div class="social-network twitter">
+<a class="social-network-icon trans-it" target="_blank" href="http://www.twitter.com/analyticsvidhya" title="Follow our twitter"><i class="icon-twitter trans-it"></i></a>
+<div class="social-network-counter">
+<div class="social-network-count">4,972</div>
+<div class="social-network-unit">Followers</div>
+</div>
+<div class="clearfix"></div>
+</div>
+<div class="social-network facebook">
+<a class="social-network-icon trans-it" target="_blank" href="http://www.facebook.com/Analyticsvidhya" title="Like our Facebook"><i class="icon-facebook trans-it"></i></a>
+<div class="social-network-counter">
+<div class="social-network-count">14,379</div>
+<div class="social-network-unit">Followers</div>
+</div>
+<div class="clearfix"></div>
+</div>
+<div class="social-network gplus">
+<a class="social-network-icon trans-it" target="_blank" href="https://plus.google.com/+Analyticsvidhya" title="Follow our Google+"><i class="icon-gplus trans-it"></i></a>
+<div class="social-network-counter">
+<div class="social-network-count">1,061</div>
+<div class="social-network-unit">Followers</div>
+</div>
+<div class="clearfix"></div>
+</div>
+<div class="social-network rss">
+<a class="social-network-icon trans-it" target="_blank" href="http://feedburner.google.com/fb/a/mailverify?uri=analyticsvidhya" title="RSS Feeds"><i class="icon-rss trans-it"></i></a>
+<div class="social-network-counter">
+<div class="social-network-count">Email</div>
+<div class="social-network-unit">Subscribe</div>
+</div>
+<div class="clearfix"></div>
+</div>
+</div><div id="text-20" class="widget clearfix widget_text"> <div class="textwidget"><a href="http://datahack.analyticsvidhya.com/contest/mini-datahack-2" target="_blank"><img src="./Do Faster Data Manipulation using These 7 R Packages_files/mini-data-hack.jpg" scale="0"></a></div>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+ 
+ 
+<footer id="footer">
+ 
+<div id="footer-sidebar">
+<div class="container">
+<div class="row">
+<div class="col-sm-4">
+<div id="text-9" class="widget clearfix widget_text"><div class="widget-title"><div class="block-cap"><h3>About Us</h3></div></div> <div class="textwidget">For those of you, who are wondering what is “Analytics Vidhya”, “Analytics” can be defined as the science of extracting insights from raw data. The spectrum of analytics starts from capturing data and evolves into using insights / trends from this data to make informed decisions. <a href="http://www.analyticsvidhya.com/about-me/" style="color:#7d7d7d;text-decoration:underline;">Read More</a></div>
+</div><div id="maha_social_subscribe-3" class="widget clearfix social_subscribe"><div class="widget-title"><div class="block-cap"><h3>Stay Connected</h3></div></div>
+<div class="social-network twitter">
+<a class="social-network-icon trans-it" target="_blank" href="http://www.twitter.com/analyticsvidhya" title="Follow our twitter"><i class="icon-twitter trans-it"></i></a>
+<div class="social-network-counter">
+<div class="social-network-count">4,972</div>
+<div class="social-network-unit">Followers</div>
+</div>
+<div class="clearfix"></div>
+</div>
+<div class="social-network facebook">
+<a class="social-network-icon trans-it" target="_blank" href="http://www.facebook.com/Analyticsvidhya" title="Like our Facebook"><i class="icon-facebook trans-it"></i></a>
+<div class="social-network-counter">
+<div class="social-network-count">14,379</div>
+<div class="social-network-unit">Followers</div>
+</div>
+<div class="clearfix"></div>
+</div>
+<div class="social-network gplus">
+<a class="social-network-icon trans-it" target="_blank" href="https://plus.google.com/+Analyticsvidhya" title="Follow our Google+"><i class="icon-gplus trans-it"></i></a>
+<div class="social-network-counter">
+<div class="social-network-count">1,061</div>
+<div class="social-network-unit">Followers</div>
+</div>
+<div class="clearfix"></div>
+</div>
+<div class="social-network rss">
+<a class="social-network-icon trans-it" target="_blank" href="http://feedburner.google.com/fb/a/mailverify?uri=analyticsvidhya" title="RSS Feeds"><i class="icon-rss trans-it"></i></a>
+<div class="social-network-counter">
+<div class="social-network-count">Email</div>
+<div class="social-network-unit">Subscribe</div>
+</div>
+<div class="clearfix"></div>
+</div>
+</div> </div>
+<div class="col-sm-4">
+<div id="maha_recent_posts-4" class="widget clearfix widget_recents"><div class="widget-title"><div class="block-cap"><h3>Latest Posts</h3></div></div>
+<div class="post-box-small recent-item clearfix" itemscope="" itemtype="http://schema.org/Article">
+<div class="thumb-wrap zoom-zoom three">
+<a href="http://www.analyticsvidhya.com/blog/2016/05/ase-studies-10x-faster-using-dynamic-programming/" rel="bookmark" title="Solve Interview Case Studies 10x Faster Using Dynamic Programming">
+<img width="83" height="63" itemprop="image" class="entry-thumb zoom-it three" src="./Do Faster Data Manipulation using These 7 R Packages_files/picture(1).jpg" alt="Solve Interview Case Studies 10x Faster Using Dynamic Programming" title="Solve Interview Case Studies 10x Faster Using Dynamic Programming" srcset="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2016/05/picture.jpg?zoom=2&amp;resize=83%2C63" src-orig="http://i1.wp.com/www.analyticsvidhya.com/wp-content/uploads/2016/05/picture.jpg?resize=83%2C63" scale="2">
+</a>
+</div>
+<div class="box-small-wrap">
+<h3 itemprop="name" class="entry-title short-bottom">
+<a itemprop="url" href="http://www.analyticsvidhya.com/blog/2016/05/ase-studies-10x-faster-using-dynamic-programming/" rel="bookmark" title="Solve Interview Case Studies 10x Faster Using Dynamic Programming">
+Solve Interview Case Studies 10x Faster Using Dynamic Programming </a>
+</h3>
+<div class="meta-info">
+<span itemprop="author" class="entry-author">Tavish Srivastava</span>
+<span class="coma">,</span>
+<time itemprop="dateCreated" class="entry-date" datetime="2016-05-16T03:59:38+00:00">
+May 16, 2016 </time>
+</div>
+</div>
+</div>
+<div class="post-box-small recent-item clearfix" itemscope="" itemtype="http://schema.org/Article">
+<div class="thumb-wrap zoom-zoom three">
+<a href="http://www.analyticsvidhya.com/blog/2016/05/h2o-data-table-build-models-large-data-sets/" rel="bookmark" title="Use H2O and data.table to build models on large data sets in R">
+<img width="83" height="63" itemprop="image" class="entry-thumb zoom-it three" src="./Do Faster Data Manipulation using These 7 R Packages_files/pexels-photo-min(2).jpg" alt="Use H2O and data.table to build models on large data sets in R" title="Use H2O and data.table to build models on large data sets in R" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2016/05/pexels-photo-min.jpg?zoom=2&amp;resize=83%2C63" src-orig="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2016/05/pexels-photo-min.jpg?resize=83%2C63" scale="2">
+</a>
+</div>
+<div class="box-small-wrap">
+<h3 itemprop="name" class="entry-title short-bottom">
+<a itemprop="url" href="http://www.analyticsvidhya.com/blog/2016/05/h2o-data-table-build-models-large-data-sets/" rel="bookmark" title="Use H2O and data.table to build models on large data sets in R">
+Use H2O and data.table to build models on large data sets in R </a>
+</h3>
+<div class="meta-info">
+<span itemprop="author" class="entry-author">Manish Saraswat</span>
+<span class="coma">,</span>
+<time itemprop="dateCreated" class="entry-date" datetime="2016-05-12T02:45:04+00:00">
+May 12, 2016 </time>
+</div>
+</div>
+</div>
+<div class="post-box-small recent-item clearfix" itemscope="" itemtype="http://schema.org/Article">
+<div class="thumb-wrap zoom-zoom three">
+<a href="http://www.analyticsvidhya.com/blog/2016/05/winners-approach-solution-seers-accuracy/" rel="bookmark" title="Winners Talk: Top 3 Solutions of The Seer’s Accuracy Competition">
+<img width="83" height="63" itemprop="image" class="entry-thumb zoom-it three" src="./Do Faster Data Manipulation using These 7 R Packages_files/win-win-83x63.jpe" alt="Winners Talk: Top 3 Solutions of The Seer’s Accuracy Competition" title="Winners Talk: Top 3 Solutions of The Seer’s Accuracy Competition" scale="0">
+</a>
+</div>
+<div class="box-small-wrap">
+<h3 itemprop="name" class="entry-title short-bottom">
+<a itemprop="url" href="http://www.analyticsvidhya.com/blog/2016/05/winners-approach-solution-seers-accuracy/" rel="bookmark" title="Winners Talk: Top 3 Solutions of The Seer’s Accuracy Competition">
+Winners Talk: Top 3 Solutions of&nbsp;The Seer’s Accuracy Competition </a>
+</h3>
+<div class="meta-info">
+<span itemprop="author" class="entry-author">Manish Saraswat</span>
+<span class="coma">,</span>
+<time itemprop="dateCreated" class="entry-date" datetime="2016-05-09T02:44:35+00:00">
+May 9, 2016 </time>
+</div>
+</div>
+</div>
+<div class="post-box-small recent-item clearfix" itemscope="" itemtype="http://schema.org/Article">
+<div class="thumb-wrap zoom-zoom three">
+<a href="http://www.analyticsvidhya.com/blog/2016/05/19-data-science-tools-for-people-dont-understand-coding/" rel="bookmark" title="19 Data Science Tools for people who aren’t so good at Programming">
+<img width="83" height="63" itemprop="image" class="entry-thumb zoom-it three" src="./Do Faster Data Manipulation using These 7 R Packages_files/datasciencetools(1).jpg" alt="19 Data Science Tools for people who aren’t so good at Programming" title="19 Data Science Tools for people who aren’t so good at Programming" srcset="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2016/05/datasciencetools.jpg?zoom=2&amp;resize=83%2C63" src-orig="http://i2.wp.com/www.analyticsvidhya.com/wp-content/uploads/2016/05/datasciencetools.jpg?resize=83%2C63" scale="2">
+</a>
+</div>
+<div class="box-small-wrap">
+<h3 itemprop="name" class="entry-title short-bottom">
+<a itemprop="url" href="http://www.analyticsvidhya.com/blog/2016/05/19-data-science-tools-for-people-dont-understand-coding/" rel="bookmark" title="19 Data Science Tools for people who aren’t so good at Programming">
+19 Data Science Tools for people who aren’t so good at Programming </a>
+</h3>
+<div class="meta-info">
+<span itemprop="author" class="entry-author">Aarshay Jain</span>
+<span class="coma">,</span>
+<time itemprop="dateCreated" class="entry-date" datetime="2016-05-05T04:45:16+00:00">
+May 5, 2016 </time>
+</div>
+</div>
+</div>
+</div> </div>
+<div class="col-sm-4">
+<div id="maha_menus-2" class="widget clearfix widget_menus"><div class="widget-title"><div class="block-cap"><h3>Quick Links</h3></div></div><ul><li><a href="http://www.analyticsvidhya.com/">Home</a></li><li><a href="http://www.analyticsvidhya.com/about-me/">About Us</a></li><li><a href="http://www.analyticsvidhya.com/about-me/team/">Our team</a></li><li><a href="http://www.analyticsvidhya.com/privacy-policy/">Privacy Policy</a></li><li><a href="http://www.analyticsvidhya.com/refund-policy/">Refund Policy</a></li><li><a href="http://www.analyticsvidhya.com/terms/">Terms of Use</a></li></ul></div><div id="top-reviews-2" class="widget clearfix widget_review"><div class="widget-title"><div class="block-cap"><h3>Top Reviews</h3></div></div></div><div id="text-11" class="widget clearfix widget_text"> <div class="textwidget"> </div>
+</div> </div>
+</div>
+</div>
+</div>
+ 
+ 
+<div class="f-copyright">
+<div class="container">
+<div class="row">
+<div class="col-sm-8">
+© Copyright 2015 Analytics Vidhya </div>
+<div class="col-sm-4">
+<nav>
+</nav>
+</div>
+</div>
+</div>
+</div>
+ 
+</footer>
+ 
+</div>
+ 
+</div>
+ 
+<div id="scrolltop" class="">
+<a><i class="icon-up-open-big"></i></a>
+</div>
+</div>
+<div style="display:none">
+<div class="grofile-hash-map-9b611a798b408d0b3ab2bbc66479b624">
+</div>
+<div class="grofile-hash-map-507fe1a177b3d7ae2b67ad025b216340">
+</div>
+<div class="grofile-hash-map-d6f45d66dc8d7361f1a31a4a20b6948c">
+</div>
+<div class="grofile-hash-map-87be1eddae7e3780b2bdd490d684cd76">
+</div>
+<div class="grofile-hash-map-15f721faa5081c23cadc62f8d8688085">
+</div>
+<div class="grofile-hash-map-99c5752cdf6a9249e15613829c4c0665">
+</div>
+<div class="grofile-hash-map-63d75c3585584e40a13cd53a91ca2981">
+</div>
+<div class="grofile-hash-map-9b611a798b408d0b3ab2bbc66479b624">
+</div>
+<div class="grofile-hash-map-b44069889fc1ad5c82befe34d880a4fa">
+</div>
+<div class="grofile-hash-map-310cae5080ca9e14cc1ecee1a829e400">
+</div>
+</div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+  var q2w3_sidebar_1_options = { "sidebar" : "blog-sidebar", "margin_top" : 100, "margin_bottom" : 800, "screen_max_width" : 0, "width_inherit" : false, "widgets" : ['text-20'] };
+  q2w3_sidebar(q2w3_sidebar_1_options);
+  setInterval(function () { q2w3_sidebar(q2w3_sidebar_1_options); }, 1500);
+});
+</script>
+<div id="su-footer-links" style="text-align: center;"></div>
+<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"http:\/\/www.analyticsvidhya.com\/blog\/2015\/12\/faster-data-manipulation-7-packages\/":21820};
+	</script>
+<script type="text/javascript">
+			var windowOpen;
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-linkedin' ).on( 'click', function() {
+				if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomlinkedin', 'menubar=1,resizable=1,width=580,height=450' );
+				return false;
+			});
+		});
+		</script>
+<script type="text/javascript">
+			var windowOpen;
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-facebook' ).on( 'click', function() {
+				if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+		});
+		</script>
+<script type="text/javascript">
+			var windowOpen;
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-google-plus-1' ).on( 'click', function() {
+				if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomgoogle-plus-1', 'menubar=1,resizable=1,width=480,height=550' );
+				return false;
+			});
+		});
+		</script>
+<script type="text/javascript">
+			var windowOpen;
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-twitter' ).on( 'click', function() {
+				if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+		});
+		</script>
+<script type="text/javascript">
+			var windowOpen;
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-pocket' ).on( 'click', function() {
+				if ( 'undefined' !== typeof windowOpen ){ // If there's another sharing window open, close it.
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery(this).attr( 'href' ), 'wpcompocket', 'menubar=1,resizable=1,width=450,height=450' );
+				return false;
+			});
+		});
+		</script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/form.js" defer="defer"></script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/core.min.js" defer="defer"></script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/photon.js" defer="defer"></script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/jquery.form.min.js" defer="defer"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/www.analyticsvidhya.com\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","recaptchaEmpty":"Please verify that you are not a robot.","sending":"Sending ...","cached":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/scripts.js" defer="defer"></script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/devicepx-jetpack.js" defer="defer"></script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/gprofiles.js" defer="defer"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/wpgroho.js" defer="defer"></script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/main.js"></script><style type="text/css">.marquee{white-space:nowrap;overflow:hidden;visibility:hidden;}#marq_kill_marg_bord{border:none!important;margin:0!important;}</style>
+<script type="text/javascript">
+/* <![CDATA[ */
+var MahaAjax = {"ajaxurl":"http:\/\/www.analyticsvidhya.com\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/basix.js" defer="defer"></script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/add_to_cart.js" defer="defer"></script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/comment-reply.min.js" defer="defer"></script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/effect.min.js" defer="defer"></script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/effect-blind.min.js" defer="defer"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var stbUserOptions = {"mode":"css","cssOptions":{"roundedCorners":true,"mbottom":10,"imgHide":"http:\/\/www.analyticsvidhya.com\/blog\/wp-content\/plugins\/wp-special-textboxes\/images\/minus.png","imgShow":"http:\/\/www.analyticsvidhya.com\/blog\/wp-content\/plugins\/wp-special-textboxes\/images\/plus.png","strHide":"Hide","strShow":"Show"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/wstb.min.js" defer="defer"></script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/wp-embed.min.js" defer="defer"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Do Faster Data Manipulation using These 7 R Packages_files/sharing.js" defer="defer"></script>
+<style>@media (min-width: 769px) {#top-bar-sticky{display:inherit;}}#buddypress div.generic-button .friendship-button,#buddypress .bbp-the-content-wrapper .wp-editor-container .quicktags-toolbar input,#buddypress div.generic-button .friendship-button a,#buddypress .maha_bp_group_button div.generic-button a,.woo-maha ul.order_details.bacs_details h3,.widget.widget_icl_lang_sel_widget #lang_sel,#lang_sel_footer,body{;font-family:'Raleway',Arial,sans-serif;font-weight:400;font-size:15px;}#buddypress div#item-header #item-buttons div.generic-button#post-mention a,#buddypress div#item-header #item-buttons div.generic-button#send-private-message a,#buddypress .maha-bp-content-font{font-family:'Raleway',Arial,sans-serif!important;}#body-maha{background-color:#fff;background-image:url("https://www.analyticsvidhya.com/wp-content/uploads/2015/02/wild-sea24.jpg");background-repeat:repeat;background-position:center center;background-size:;background-attachment:;}#body-background{margin:0 auto;}@media (min-width: 1200px){#body-background,#main-nav-bar.on-stuck{width:1200px;}}@media (max-width: 1199px) and (min-width: 992px) {#body-background,#main-nav-bar.on-stuck{width:997px;}}@media (max-width: 991px) and (min-width: 768px) {#body-background,#main-nav-bar.on-stuck{width:773px;}}.main-ul-nav ul li.mh-navcat-1915:hover>a,.main-ul-nav ul li.mh-navcat-1915.current-menu-item>a,.main-ul-nav ul li.mh-navcat-1915.current-post-parent>a{-webkit-box-shadow:0 -4px 0 #222 inset;-moz-box-shadow:0 -4px 0 #222 inset;box-shadow:0 -4px 0 #222 inset;}.i-category a.mh-elcat-1915{background:#222;}.main-ul-nav ul li.mh-navcat-2284:hover>a,.main-ul-nav ul li.mh-navcat-2284.current-menu-item>a,.main-ul-nav ul li.mh-navcat-2284.current-post-parent>a{-webkit-box-shadow:0 -4px 0 #222 inset;-moz-box-shadow:0 -4px 0 #222 inset;box-shadow:0 -4px 0 #222 inset;}.i-category a.mh-elcat-2284{background:#222;}.main-ul-nav ul li.mh-navcat-2498:hover>a,.main-ul-nav ul li.mh-navcat-2498.current-menu-item>a,.main-ul-nav ul li.mh-navcat-2498.current-post-parent>a{-webkit-box-shadow:0 -4px 0 #222 inset;-moz-box-shadow:0 -4px 0 #222 inset;box-shadow:0 -4px 0 #222 inset;}.i-category a.mh-elcat-2498{background:#222;}a{color:#080e14}body,.widget_calendar tbody td,input[type="text"],input[type="password"],input[type="email"],textarea,select,#con-search,#buddypress #profile-edit-form ul.button-nav a,#buddypress form#whats-new-form textarea,#buddypress .standard-form select,#buddypress div.item-list-tabs#subnav ul li.feed a,#buddypress ul.item-list li div.item-title span,#buddypress ul#groups-list li .item-desc p,.bp-site-wide-message div#message p a,#sitewide-notice a,#buddypress table tr td.thread-info p.thread-excerpt,#buddypress div.activity-comments form textarea{color:#080e14}#bbpress-forums .bbp-body li.bbp-forum-topic-reply,li.bbp-topic-post,.bbp-pagination-count,#bbpress-forums div.bbp-reply-content .maha_bbp_author_name{color:#080e14}.woo-maha .form-row .chosen-container-single .chosen-single,.woo-maha .quantity.buttons_added>input,.woo-maha .myaccount_user,.woo-maha .myaccount_user a,.woo-maha .myaccount_user span{color:#080e14}#con-search .search-field,::-webkit-input-placeholder{color:#080e14!important}</style>
+ 
+<div class="dgd_stb_box " id="dgd_scrollbox-16979" style="padding: 10px; border: 2px solid rgb(0, 0, 0); border-radius: 1px; box-shadow: rgb(136, 136, 136) 1px 1px 25px; height: 350px; width: 600px; top: 695px; left: 340px; background-color: rgb(255, 255, 255);"><a class="dgd_stb_box_close" href="javascript:void(0);" style="width: 29px; height: 30px; border: none; top: -12px; right: -12px; background-image: url(&quot;https://www.analyticsvidhya.com/wp-content/uploads/2015/06/cross.png&quot;);"> </a><div class="popup-bg-1"></div>
+<h5 class="h5-popup">Join world’s fastest growing Analytics Community</h5>
+<h6 class="h6-popup">Receive awesome tips, guides, infographics and become expert at:</h6>
+<ul class="popup-ul">
+<li>R/SAS/Python</li>
+<li>Data Visualization</li>
+<li>Big Data</li>
+<li>Machine Learning</li>
+</ul>
+<p class="p-popup">Above all, interact with data science professionals like yourself across the globe!<br>
+We don’t settle for anything less than awesome content!</p>
+<form class="stbContactForm" style="margin-top: -35px;" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow"><input name="uri" type="hidden" value="analyticsvidhya"><br>
+<input name="loc" type="hidden" value="en_US"><br>
+<input id="email" class="popup-email" name="email" required="required" type="email" value="" placeholder="Enter Your Email..."><br>
+<input class="popup-subscribe" type="submit" value="Subscribe"></form>
+<p class="stbMsgArea">
+</p><ul class="stb_social"></ul></div>
+ 
+<script type="text/javascript" src="http://stats.wp.com/e-201620.js" async="" defer=""></script>
+<script type="text/javascript">
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:3.9.1',blog:'58948004',post:'21820',tz:'0',srv:'www.analyticsvidhya.com'} ]);
+	_stq.push([ 'clickTrackerInit', '58948004', '21820' ]);
+</script>
+
+
+ </body></html>

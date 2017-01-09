@@ -1,0 +1,2 @@
+(function(){define(["external/react","modules/clean/react/modal","modules/clean/sharing/constants","modules/core/i18n"],function(e,n,t,a){var l,i,r,s,d,o;return l=n.Modal,s=e.createElement,d=e.DOM,r=a.i18n_default_project("sharing")._,i=e.createClass({displayName:"SharedLinkSettingsModal",render:function(){return s(l,{title:"Link settings modal sample title"})}}),o=function(e){return t.TIBURON.LINK_SETTINGS_REACT_UI[e]},{isSharedLinkSettingsModalAllowed:o,SharedLinkSettingsModal:i}})}).call(this);
+//# sourceMappingURL=link_settings_modal.min.js-vfllPZikM.map

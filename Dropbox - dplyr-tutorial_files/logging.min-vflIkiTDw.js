@@ -1,0 +1,2 @@
+define(["require","exports","modules/clean/comments/store","modules/clean/react/file_comments/logger","modules/clean/comments/models/immutable_file_activity"],function(t,e,n,o,i){"use strict";function a(t,e,n){return void 0===n&&(n=!1),i.prototype.findActivityByKey.call(t,e,n)}function c(t,e){var i=n.state,c=i.actorId,l=i.activity,m=i.viewing.context,r=a(l,e);try{o.log_annotation_event(t,l.activity_key,e,c,m,r.comment.comment_metadata.annotation)}catch(t){console.warn("logAnnotationEvent failed",t)}}e.logAnnotationEvent=c});
+//# sourceMappingURL=logging.min.js-vflfuDSSv.map
